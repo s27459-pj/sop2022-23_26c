@@ -1,4 +1,4 @@
-^[^QXY][A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+$ 
+^[A-PR-UWZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+$ 
 
 # Od początku linii wykluczamy duże litery Q X oraz Y
 bo żadne polskie imię nie zaczyna się od tych liter
