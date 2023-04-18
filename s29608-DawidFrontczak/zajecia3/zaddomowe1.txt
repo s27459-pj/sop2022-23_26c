@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [[ $1 =~ ^([A-ZĄĆĘŁŃÓŚŻŹ]{1}[a-ząćęłńóśżź]{1,})$ ]]; then
+echo "$1 - jest to imie"
+else
+echo "blad"
+fi
