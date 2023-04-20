@@ -1,0 +1,37 @@
+#!/bin/bash
+
+## 4. Skrypt sprawdzający ilość plików w katalogu
+
+file_count=$(ls -l | grep -c '^-')
+
+if [ $file_count -gt 5 ]; then
+    echo "W bieżącym katalogu jest więcej niż 5 plików."
+else
+    echo "W bieżącym katalogu jest 5 plików lub mniej."
+fi
+
+
+# na początku tworzymy zmienną, która będzie przechowywać liczbę plików w bieżącym katalogu.
+
+# w łańcuchu poleceń najpierw korzystamy z "ls -l", by wyświetlić szczegółowe informacje
+# o plikach w bieżącym katalogu. 
+
+# następnie używamy "grep" z parametrem -c, aby zliczyć występienie wzorca ('^-'), tj.
+# wiersze zaczynające się od myślnika, czyli pliki zwykłe. 
+
+# w końcu przy pomocy instrukcji warunkowej sprawdzamy, czy liczba plików jest większa 
+# od 5 oraz wypisujemy odpowiednią informacje w zależności od spełnienia lub niespełnienia
+# warunku. 
+
+# wykorzystanie polecenia "wc" nie wydaje się potrzebne w tym przypadku, chociaż
+# jeśli zastosować nieco inne podejście (inne filtrowanie), użytecznym na pewno 
+# byłby parametr "-l", zliczający liczbę wierszy. 
+
+# alternatywnie do polecenia "ls" oraz "grep", moglibyśmy użyć "find. Np.
+
+# file_count=$(find . -maxdepth 1 -type f | wc -l)
+
+# w łańcuchu poleceń przeszukujemy bieżący katalog, ograniczamy przeszukiwanie tylko 
+# do niego (a nie np. podkatalogów) za pomocą "-maxdepth 1", a określając parametr "-type" 
+# jako "f", ograniczamy wyszukiwanie do plików zwykłych. W celu zliczenia linii przychodzi
+# nam z pomocą wcześniej wspomniane polecenie "wc" z parametrem "-l". 

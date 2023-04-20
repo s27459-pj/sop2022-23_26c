@@ -23,5 +23,22 @@ Na dzisiejszych zajęciach nauczyłem się:
 
 Powinienem:
 - pogłębić wiedzę na temat powłok systemowych oraz języków skryptowych;
-- podszkolić się z podstaw skryptowania w Bashu (składnia, regex, argumenty itp.)
+- podszkolić się z podstaw skryptowania w Bashu (składnia, regex, argumenty itp.).
+
+2023-04-01
+
+Na dzisiejszych zajęciach nauczyłem się:
+- jak funkcjonują wyrażenia warunkowe w Bashu;
+- jak zaimplementować proste if-y w skryptach.
+
+Powinienem:
+- dokończyć teorię z lekcji w domu (pętle, tablice, funkcje);
+- wykonać zadania domowe;
+- zaprzyjaźnić się z manualem do Basha; 
+- przypomnieć sobie co nieco o C++ z poprzedniego semestru (może się przydać
+na następne zajęcia). 
+
+UWAGA: nie pamiętam czy wcześniejsze wersje tego pamiętnika były skonwertowane na format
+UNIX, ale idąc za radą od teraz wszystkie pliki .txt (włącznie z tym pamiętnikiem) 
+z zadaniami z zajęć będą wrzucane na Gita w tym formacie. 
 
