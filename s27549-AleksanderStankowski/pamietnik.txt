@@ -1,0 +1,7 @@
+2023-03-17
+Moj kochany pamietniczku na dzisiejszych zajeciach nauczylem/lam sie:
+ - dogłębnej konfiguracji wirtualnych maszyn
+ - nauczyłem się jak szacować ilość zasobów potrzebnych systemowi do funkcjonowania
+ - instalacji debiana bez środowiska graficznego
+ - dowiedziałem się o różnach typach instalacji systemu jak np. network install
+ - pierwsze zajęcia oceniam jako bardzo wartościowe lecz był to bardziej wykład niż ćwiczenia, dla mnie najlepszą metodą nauki jest praca samodzielna i praktyka

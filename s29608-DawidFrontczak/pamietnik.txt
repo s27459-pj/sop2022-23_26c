@@ -1,0 +1,8 @@
+2023-03-04
+Moj kochany pamietniczku na dzisiejszych zajeciach nauczylem/lam sie:
+Jak poprawnie zainstalowac VirtualBoxa, oraz Debiana, z dużym naciskiem na wszystkie mozliwe opcje i metody. Myslalem, ze proces bedzie latwy jak przy ponownej instalacji Windowsa - wszystko graficznie, pare klikniec, i koniec. Ale zaskoczylem sie pozytywnie, fajnie miec wplyw na kazdy element instalacji, choc trzeba sie troche poduczyc i uwazac zeby nic nie zepsuc. Dodatkowo dowiedzialem sie jak zrobic forka repo na githubie, sklonowalem swoje repozytorium na swoj komputer, no i stworzylem katalog z wlasnym numerem studenta. Co do Debiana, troche za duzo informacji na raz, ale temat fajny. Fajnie ze jest pokazywane jak uzytkowac githuba, na pewno przyda sie to w przyszlosci, w pracy albo prywatnie tworzac wlasne rzeczy.
+...
+
+2023-03-18
+Moj kochany pamietniczku na dzisiejszych zajeciach nauczylem/lam sie:
+Pisania skryptow w BASH-u. Bylo to troche powtorki z UKOS-ów, a zarazem troche nowych rzeczy. Ciekawy jest wyglad petli, bylo to na UKOS ale troche wypadlo z glowy. Petle wszedzie sa podobne, ale zawsze sie czyms roznia. Była tez powtorka z regexa, tez troche juz o tym bylo, ale jest to fajna sprawa, no i zawsze mozna sie wspomoc regex101. Na koncu bylo troche sprostowania co do githuba, commitow i pullrequestow. Dobrze, bo w pozniejszym etapie studiow bedzie to uzywane ciagle. Zapamietac: learngitbranching.js.org/?locale=en

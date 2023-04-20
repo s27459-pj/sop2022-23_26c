@@ -1,0 +1,7 @@
+5.03.2023
+Moj kochany pamietniczku na dzisiejszych zajeciach nauczylem sie:
+Na zajęciach zobaczyłem jak zainstalować system Debian na maszynie wirtualnej VirtualBox. Proces był bardzo szczegółowy, zostały przestawione wszystkie ustawienia które w przyszłości mogę potrzebować do skonfigurowania kolejnych maszyn. Z kwestii organizacyjnych dowiedziałem się jakie są zasady zdawania przedmiotu oraz jak wygląda współpraca w systemie GIT.
+Dowiedziałem się o niuansach w różnicach pomiędzy różnymi dyskami, obrazami, sposobami instalacji. Wiem też jak dobierać rozmiar pamięci masowej jak i RAM do przewidywanej eksploatacji.
+Chciałbym lepiej poznać systemy plików w systemach Linux, wydaje mi sie to tematem dosyć obszernym który posiada dużą wartość edukacyjną.
+Zaskoczyło mnie istnienie swaparea, nigdy bym na to nie wpadł.
+Zajęcia mi się podobały, wolałbym jednak aby nie było to tylko siedzenie i słuchanie, a zrobienie czegoś praktycznego.

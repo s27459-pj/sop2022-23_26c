@@ -1,0 +1,430 @@
+INSTALACJA DEBIAN LINUX
+
+
+VirtualBox    --> https://www.virtualbox.org/wiki/Downloads (Windows host)
+Obraz Debiana --> https://www.debian.org/download (instalator sieciowy, netinst)
+
+_______________________________________________________________________________________________
+
+
+Wybieramy obraz netinst, ponieważ jest to mniejszy obraz. Szybciej go zainstalujemy,
+nie będziemy musieli czekać godzinami aż pełen obraz ISO zawierający wszystkie dodatki i 
+pakiety skończy pracę. Debian zainstalowany z netinsta pobierze sobie te rzeczy sam, z
+internetu, w trakcie instalacji. Jeśli mamy dobrą łączność z internetem, to jest to lepszy
+wybór.
+
+Instalujemy VirtualBox. Raczej nie ma co tu opisywać, instalka jak każda inna. Dodatkowo
+zainstalują się wszystkie potrzebne sterowniki od Oracle, w tym te od obsługi USB, sieci, i inne. 
+
+Mając pobrany obraz Debiana, oraz zainstalowany VirtualBox, przechodzimy do procesu tworzenia
+maszyny wirtualnej i instalacji systemu.
+
+
+_______________________________________________________________________________________________
+
+
+W oknie VB klikamy "Nowa". W polu "Nazwa" wpisujemy Debian. VirtualBox zrozumie o jaki system
+nam chodzi, i sam ustawi typ systemu (Linux) oraz wersję (Debian 64-bit).
+
+Dajemy 4096MB pamięci. Większość nowoczesnych PCtów i laptopów ma >=16GB, więc nie wpłynie to mocno na wydajność
+naszego komputera. Według dokumentacji debiana (https://www.debian.org/releases/jessie/mips/ch03s04.html.en)
+do instalacji wersji bez desktopa, wystarczy minimum 128MB RAM-u, a rekomendowane jest 512MB. Mamy to na uwadze,
+ale dajemy więcej, aby instalacja poszła sprawniej, no i żeby system nam śmigał. Będzie to w zupełności wystarczające,
+nawet jeśli będziemy chcieli doinstalować w pózniejszym etapie GUI desktopowe, np. GNOME (rekomendowane 1GB). Dodatkowo,
+liczba 4096 jest podzielna przez 2, co jest zalecane przy wyborze pamięci RAM, aby komputer łatwiej mógł tą wartość
+sobie podzielić, i w pełni wykorzystać kazdy bajt. 
+
+Tworzymy wirtualny dysk twardy dla maszyny. Według wyżej podanej dokumentacji, dla instalacji bez desktopa 
+zalecane jest 2GB, a dla instalacji z desktopem 10GB. Wybieramy typ dysku, z trzech podanych: 
+-VDI (VirtualBox Disk Image) - format natywny VB, najbardziej kompatybilny, podobno nawet wydajniejszy od reszty,
+choć wolniejszy od VMDK (źródło: https://www.parallels.com/blogs/ras/vdi-vs-vhd-vs-vmdk/ - Unofficial tests affirm that 
+VDI files are smaller and perform better than VHD or VHDX. However, VDI has been shown to be slower than VMDK.)
+-VHD (Virtual Hard Disk) - format Microsoftowy, używany m.in. w HyperV, maszynach wirtualnych Azure, jak i możliwy 
+do użycia normalnie w Windowsie, poprzez "podłączenie go". Widnieć on będzie w "Ten komputer" tak samo jak zwykłe 
+dyski.
+-VMDK (Virtual Machine Disk) - format firmy VMWare
+
+Wybieramy VDI, ponieważ nie używamy VMWare, Azure, ani HyperV, więc format natywny VirtualBoxa posłuży nam najlepiej.
+
+Typy dysków do wyboru: 
+-Dynamicznie przydzielany - plik służący jako dysk (w naszym przypadku *.vdi) będzie dostosowywał swój rozmiar do tego, 
+ile będziemy potrzebować. Przykładowo, ustawiamy mu rozmiar 1TB, a po stworzeniu będzie miał jedynie parę MB. 
+Razem z instalacją systemu, programów, itp itd będzie się on zwiększał, maksymalnie do określonego przez nas 
+rozmiaru (w tym przypadku 1TB). Problemem może być brak możliwości stworzenia ciągłych danych na dysku, gdyż mogą
+one być porozrzucane po różnych częściach dynamicznie przydzielonej pamięci, co wpłynie źle na wydajność.
+-Stały rozmiar - ustawiony przez nas rozmiar od razu zostanie "odjęty" (prealokowany) od naszej wolnej pamięci dyskowej
+komputera. Przed możliwością skorzystania z maszyny będzie trzeba poczekać, aż zostanie dokończony proces rezerwacji
+pamięci. Wpiszemy 10GB, powstanie plik dysku maszyny wirtualnej o pojemności 10GB, nie tak jak w przypadku dysku dynamicznie 
+przydzielanego.
+
+Wybieramy dynamicznie przydzielany. Maszyna ma nam służyć do nauki, więc zaoszczędzimy czas. 
+
+Wybieramy 16GB pamięci na dysku. Do Debiana bez desktopa potrzeba 2GB, z desktopem 10GB. Nie wiadomo czy
+później czegoś nie doinstalujemy w celach nauki, więc damy trochę więcej niz 10GB, żeby mieć luźne miejsce. Maszyna
+nie będzie nam służyć jako serwer ani nic z tych rzeczy, więc nie ma potrzeby dawać więcej.
+
+No i utworzy nam się maszynka. Teraz zaznaczamy ją, i wchodzimy w ustawienia.
+
+W zakładce "Ogólne":
+	-Podstawowe:
+		Możemy zmienić nazwę maszyny, typ systemu, oraz jego wersję. Nic nie zmieniamy.
+
+	-Zaawansowane: 
+		Możemy zdefiniować folder migawki, służący do przechowywania "migawek systemu". Chcemy
+		się pobawić i poinstalować trojany na wirtualce? Robimy migawkę sprawnego systemu, bawimy się, i potem przywracamy
+		system do punktu z migawki. Współdzielony schowek jak sama nazwa mówi, pozwala współdzielić schowek naszego
+		komputera z maszyną wirtualną. Często się przydaje, można skopiować jakąś treść ze swojego komputera, wrócić
+		do okienka maszyny, i wygodnie wkleić. Można też odwrotnie, zależy od wybranego ustawienia. 
+		Przeciąganie i upuszczanie to nic innego jak drag and drop, służące do przesyłu plików poprzez własnie 
+		przeciągniecie ich myszką, i upuszczenie. W systemie bez desktopa raczej się nie przyda. Także można wybrać 
+		ustawienie jak w przypadku współdzielonego schowka, tj. czy można drag and drop robić z hosta do maszyny, czy odwrotnie,
+		czy tu i tu. 
+	
+	-Opis:
+		Można ustawić opis do danej maszyny. Może mamy ich 5, ciężko nam rozróżnić po nazwie, na wszystkich
+		mamy postawiony ten sam system, to można tu sobie zanotować co i jak.
+		
+	-Szyfrowanie dysku:
+		Zabezpieczenie dysku przez stworzenie szyfru chroniącego. Spowalnia to procesy odczytu i zapisu, 
+		przez zaimplementowanie algorytmu szyfrującego. Opcje: AES-XTS256-PLAIN64 lub AES-XTS128-PLAIN64.
+		Główną rożnicą między dwiema metodami szyfrującymi jest długość klucza szyfrującego używanego do ochrony plików.
+		AES128 pozwala na użycie 128 bitowego klucza, a AES256 256 bitowego. AES256 posiada 2^128 razy więcej kluczy
+		niż AES128 (źródło: https://www.ubiqsecurity.com/128bit-or-256bit-encryption-which-to-use/ - This means that AES-256 
+		has 2^128 or 340,282,366,920,938,463,463,374,607,431,768,211,456 times as many keys as AES-128.), co czyni go
+		bezpieczniejszym i trudniejszym do złamania. My nie szyfrujemy dysku.
+		
+W zakładce "System":
+	-Płyta główna:
+		Możemy zmienić ilość RAMu maszyny, wybrać kolejność bootowania (podobnie jak w BIOSie, np. urządzenie USB na samą
+		górę, żeby zbootować z obrazu na pendrivie). Możemy odznaczyć dyskietkę, gdyż nie przyda nam
+		się to, i dajmy dysk twardy na samą górę, a po nim napęd, do którego potem zamontujemy plik iso.
+		Chipset - opcje PIIX3 lub ICH9. PIIX3 jest domyślnym ustawieniem dla wielu systemów. Używając ICH9 możemy
+		skonfigurować aż 36 kart sieciowych, w porównaniu do 8 w przypadku PIIX3. Wsparcie ICH9 jest eksperymentalne,
+		i nie powinno się używać tej opcji gdy nie jest wymagana. Jako urządzenie wskazujące wybieramy Mysz PS/2. Dostępne
+		są również opcje Tablet USB oraz Wielodotykowy tablet USB. Różnicą jest to, że przy użyciu Mysz PS/2, nasza mysz
+		będzię w pełni przechwytywana przez maszynę wirtualną, aby użyć myszy poza nią będzie trzeba użyć skrótu klawiszowego.
+		Przy użyciu opcji Tablet USB maszyna odczytuje nasze ruchy bez potrzeby całkowitego zabrania dostępu do myszy, co może
+		być dla co niektórych wygodniejsze, ale może też doprowadzić do niechcianych kliknięć. 
+		Rozszerzone właściwości: I/O APIC, po polsku zaawansowany programowalny kontroler przerwań, nam nie jest potrzebny,
+		potrzebny jest głównie przy instalacji 64 bitowych systemów Windows na maszynie wirtualnej. Zaleca się również 
+		włączenie tej opcji przy użyciu więcej niż jednego procesora w maszynie wirtualnej. Ma ona tendencję do zwalniania 
+		działania systemu na maszynie. Czas UTC: opcja zmieniająca to, w jaki sposób VB przekazuje aktualny czas maszynie
+		wirtualnej. Głównie ważna dla systemów typu UNIX instalowanych na maszynie wirtualnej, więc zaznaczamy.
+		EFI: zastąpienie legacy BIOSa, przydatne przy specjalnych przypadkach z innymi systemami, nam się nie przyda.
+		Gdybyśmy włączyli tę opcję, to system by nie wystartował.
+	-Procesor: 
+		Możemy zmienić ilość procesorów logicznych używanych przez maszynę wirtualną. Ja mam 12, ale zostawiam 1, wystarczy.
+		Wykorzystanie zostawiam na 100%, zmniejszenie tej wartości może mocno obniżyć wydajność. 
+		Rozszerzone właściwości: PAE/NX - potrzebne przy instalacji 32 bitowego systemu na maszynie wirtualnej, gdy 
+		potrzebujemy więcej niż 4GB RAM-u. VT-x/AMD-V - pozwala na wykonanie zagnieżdzonych wirtualizacji, tj. jedna 
+		maszyna wirtualna na drugiej. Nam się to nie przyda.
+	-Akceleracja:
+		Interfejs parawirtualizacji: pozwala na wybór dostawcy parawirtualizacji, opcje: Stary, Brak, Domyślny, Minimalny,
+		Hyper-V, KVM. Ma to wpływ na wydajność i dokładność pomiarów czasowych w maszynie, najlepiej wybrać tę opcję, która 
+		najlepiej pasuje do naszego systemu - zostawiamy Domyślne. Wirtualizacja sprzętowa: Włączamy zagnieżdżone stronicowanie,
+		jeśli nasz komputer wspiera technologię Intel VT-x lub AMD-V, to zwiększy to wydajność maszyny.
+		
+W zakładce "Ekran":
+	-Ekran:
+		Możemy przypisać maszynię większą ilość pamięci wideo, zmienić ilość monitorów wirtualnych maszyny wirtualnej,
+		oraz wybrać typ GPU używanego przez maszynę. VMSVGA jest defaultowe dla Linuxó, VBoxVGA jest do starych systemów 
+		(<Win7), VBoxSVGA defaultowe dla Windowsów, ulepszone VBoxVGA z lepszymi możliwościami. Dodatkowo możemy włączyć 
+		akcelerację 3D, która przekazuje maszynie wirtualnej funkcje naszej grafiki Jako że nie będziemy wykonywać żadnych 
+		zaawansowanych czynności wymagających dużego zaangażowania GPU (nie będziemy giercować).
+	-Zdalny pulpit:
+		Pozwala na skonfigurowanie Zdalnego pulpitu, dzięki czemu można korzystać z maszyny zdalnie korzystając z klienta do
+		Remote Desktop. My nie będziemy z tego korzystać.
+	-Nagrywanie:
+		Można skonfigurować nagrywanie ekranu maszyny wirtualnej, tj. wybrać ścieżkę do zapisu nagrania, rozdzielczość, 
+		ilość klatek/s, bitrate wideo itp itd. My niczego nie nagrywamy.
+
+W zakładce "Pamięć":
+	-Tu możemy dodać dodatkowe dyski wirtualne, bądź skonfigurować aktualny. Klikając na Kontroler SATA, a następnie nasz dysk
+	.vdi, możemy zauważyć listę do zmiany portu SATA dysku (nie zmieniamy, mamy tylko jeden dysk), opcję do określenia czy jest
+	to dysk SSD, dzięki czemu system wirtualny będzie widział dysk jako SSD (mam SSD, zaznaczę, nie zaszkodzi), a opcję 
+	Hot-pluggable odznaczamy, gdyż nie jest to pendrive którego można podłączać i odłączać "na gorąco". W tym momencie możemy również
+	podpiąć nasz obraz systemu debian netinst, wchodząc w kontroler IDE, napęd optyczny, klikając na płytkę z prawej, wybierz plik
+	z dysku, i wybieramy plik .iso. Zaoszczędzimy trochę czasu.
+	
+W zakładce "Dźwięk":
+	-Tu nie zmieniamy nic, bo audio nie będzie ważne w naszym korzystaniu z Debiana, lecz można tu włączyć lub wyłączyć 
+	wejście i wyjście audio przechwytywane z naszego własnego systemu, zmienić sterownik odpowiedzialny za audio.
+	
+W zakładce "Sieć":
+	-Tu możemy zmienić ustawienia sieciowe naszej maszyny wirtualnej. Kart sieciowych możemy mieć 4.
+	Jako pierwszą ustawiam NAT, aby mieć dostęp do internetu, reszty nie ruszam. Można tu np. stworzyć LAN między naszym PC
+	a systemem wirtualnym, a w ustawieniach zaawansowanych ustawić określony adres MAC, zmienić typ karty sieciowej, lub przekierować
+	porty, co może być przydatne do umożliwienia dostępu urządzeniom do usług komputerowych w naszej sieci.
+	
+
+W zakładce "Porty szeregowe":
+	-Możemy skonfigurować porty COM, które w tych czasach nie są już zbytnio używane, z tego co mi wiadomo. Nas to nie interesuje.
+	
+W zakładce "USB":
+	-Możemy włączyć lub wyłączyć kontroler USB, czego raczej nie chcemy ruszać, żeby normalnie działała nam myszka, klawiatura, itp.
+	Można też zmienić tryb pracy kontrolera USB, np. na USB 1.1, 2.0 lub 3.0. W filtrach można dodać urządzenie, które ma być
+	przechwytywane automatycznie przez system wirtualny po ich podłączeniu.
+	
+W zakładce "Udostępniane foldery":
+	-Możemy stworzyć wspólny folder, dostępny i dla systemu wirtualnego, i dla naszego komputera. Dodając folder, możemy 
+	sprawić, aby dane w nim zawarte były tylko do odczytu, oraz możemy włączyć automatyczne montowanie, dzięki któremu
+	system wirtualny będzie próbował przy starcie automatycznie zamontować folder.
+	
+W zakładce "Interfejs użytkownika":
+	-Możemy zmienić wygląd interfejsu okna VirtualBox, raczej nie ma potrzeby w tym grzebać.
+	
+Zapisujemy, i przechodzimy do instalacji.
+
+
+_______________________________________________________________________________________________
+
+
+Odpalamy maszynę z uprzednio zamontowanym obrazem systemu przyciskiem "Uruchom".
+
+Wybieramy zwykłą instalację a nie graficzną, gdyż zajmie ona nam mniej czasu, i nie wymaga użycia myszki.
+
+Advanced options - opcje zaawansowane, pozwalające m.in na włączenie trybu eksperta, ratunkowego,
+lub instalacji zautomatyzowanej. Ekspertami nie jesteśmy, więc pełna kontrola nad procesem instalacji
+nam nie pomoże. Naprawiać systemu nie chcemy, więc tryb ratunkowy też nas nie interesuje. Instalacja
+zautomatyzowana nas nie interesuje, chcemy skonfigurować system podczas instalacji samodzielnie.
+
+Accessible dark contrast installer menu włącza całe menu instalacyjne w trybie wysokiego kontrastu.
+Fajny bajer, ale nam niepotrzebne.
+
+Help - dodatkowe informacje na temat instalatora, systemu, i inne. Można zerknąć, nam się nie przyda.
+
+Wybieramy "Install" i Enter.
+
+
+_______________________________________________________________________________________________
+
+
+Język? Wybieramy angielski, informatyka jest po angielsku, powinno się pisać po angielsku.
+Ułatwia to pracę, łatwiej jest znaleźć pomoc po angielsku, itp itd. Chyba że wolimy
+elektroda.pl od stackoverflow lub reddita.
+
+Enter.
+
+Jak nam wciągnie myszkę, to wystarczy kliknąc przycisk Hosta (Domyślnie prawy CTRL).
+
+Lokalizacja - wybieramy Other, Europe, Poland. Będzie to miało wpływ na późniejszy wybór serwera,
+z którego netinst pobierze potrzebne pliki.
+
+Locale - zostawiamy domyślne, en_US.UTF-8.
+
+Keymap - wybieramy American English, jako że locale też wybraliśmy US.
+
+Chwilę czekamy.
+
+Hostname - nazwa hosta naszego systemu, identyfikator w sieci domowej, zostawiamy domyślne, 
+
+Domain name - nie będziemy bawić sie w żadne AD, więc nazwa domeny nam
+się nie przyda.
+
+Ustawienie loginu i hasła:
+Nie ustawiamy hasła dla roota. Przez to konto roota zostanie wyłączone, ale będziemy mogli dokonywać
+czynności z prawem roota z własnego konta, przy użyciu sudo.
+Login: ustawiam nr studenta, s29608.
+Hasło: hehe nie ma tak dobrze, tajemnica. Zaszyfrowana AES256 ;)
+
+_______________________________________________________________________________________________
+
+Partycjonowanie dysków:
+
+-Guided - use the entire disk: 
+	Opcja zwykła partycjonowania, tworzy 3 partycje:
+		- partycja uzytkownika na pliki systemowe i prywatne
+		- partycja /home na pliki prywatne - pomocne przy formatowaniu w przyszlosci systemu, pliki
+		zostana nietkniete
+		- partycja dla /home, /var i /tmp. W /var i /tmp znajduja sie pliki tymczasowe.
+		Opcja ta jest szybka, ale my chcemy robic to wszystko recznie, aby sie douczyc, i poznac opcje. Omijamy.
+-Guided with LVM:
+	To samo, tylko z LVM (Logical Volume Manager), pozwalajacym na polaczeniu wielu dyskow
+ znajdujacych sie na roznych urzadzeniach w jeden dysk wirtualny.
+ 
+-Guided with encrypted LVM:
+	To co wyzej, ale partycja jest szyfrowana kluczem. (Prawie jak moje haslo dawid321).
+	
+-Manual:
+	Mozemy w pelni kontrolowac to, co robimy z partycjami, jaki maja miec rozmiar, oraz typ.
+	Wybieramy to.
+	
+Dysk pokazuje 17.2GB, bo tu 1GB to 1000MB, a nie 1024MB jak w Windowsie (!!!źle!!!)
+Guided partitioning omijamy szerokim lukiem, opisane wyzej.
+Configure iSCSI volumes - woluminy sieciowe, nie bawimy sie w to.
+
+Wybieramy SCSI3 (0,0,0) (sda)    -> SmallComputerSystemInterface, interfejs do malych systemow komputerowych,
+tu mamy juz nowsza wersje 3. (0,0,0) to Kontroler 0, Dysk 0, Partycja 0. sda - pierwszy wykryty przez linuxa
+dysk twardy dostaje taka etykiete, nastepny to sdb, sdc itp itd.
+
+Dajemy YES, zjezdzamy na FREE SPACE, Enter, Create a new partition.
+
+MBR może mieć max. 4 partycje. Co musimy miec na uwadze.
+
+Ustawiamy 10GB na główną partycję systemową. Typ Primary (podstawowy), i beginning.
+
+Use as (file system):
+
+	EXT4: Najpopularniejszy system plikow linuxa, nowsza wersje ext3.
+	
+	BTRFS: Nowoczesny system plikow, stworzony glownie do uzytku w systemach
+	w przedsiebiorstwach. Jest odporny na awarie, zarzadzalny i zapewnia ochrone danych.
+	
+	JFS: Journaled File System, 64 bitowy system plikow z journalingiem, stworzony przez IBM.
+	
+	XFS: 64 bitowy system plikow dla systemow IRIX (inna wersja UNIX, firmy SGI)
+	
+	FAT16: system plikow typu FAT, obsluguje 16bitowe adresowaniem, zostal stworzony do obslugi
+	pierwszych dyskow.
+	
+	FAT32: nowsza wersja FAT16, lecz nie obsluguje 32bitowego adresowania, a 28bitowe.
+	
+	swap area: przestrzen dyskowa uzywana jako "podrobiony" RAM. Jest wolniejsza od RAMu,
+	ale bywa uzyteczna. Gdy w RAMu zbraknie miejsca, to dane chwilowo trafia tam.
+	
+	physical volume for encryption, RAID, LVM: wykorzystanie miejsca na stworzonej partycji
+	dla szyfrowania, RAID (Sposób wykorzystania w systemie komputerowym dwóch lub większej liczby 
+	dysków twardych, w którym dyski te współpracują pomiędzy sobą. Osiąga się w ten sposób szereg
+	różnorodnych możliwości nieosiągalnych przy użyciu zarówno pojedynczego dysku, jak i
+	kilku dysków podłączonych jako oddzielne - źrodło wikipedia) lub LVM.
+	
+	Wybieramy EXT4.
+	
+
+Label: Nazwa partycji, ulatwiajaca identyfikacje. Zostawiamy.
+
+Reserved blocks zostawiamy na 5%, aby w przypadku awarii
+
+Mount options:
+Default - Use the default options: rw, suid, dev, exec, auto, nouser, and async.
+dev - Interpret character or block special devices on the filesystem.
+rw - Mount the filesystem read/write. Read-write is the kernel default and the mount default is 
+to try read-only if the previous mount syscall with read-write flags on write-protected devices failed.
+exec - Permit execution of binaries and other executable files.
+auto - Can be mounted with the -a option.
+suid - Honor set-user-ID and set-group-ID bits or file capabilities when executing programs from this filesystem.
+nouser - Forbid an ordinary user to mount the filesystem. This is the default; it does not imply any other options.
+async - All I/O to the filesystem should be done asynchronously.
+(źródło https://manpages.debian.org/testing/mount/mount.8.en.html#:~:text=Use%20the%20default%20options%3A%20rw,the%20kernel%20and%20filesystem%20type)
+
+Bootable flag wlaczamy, gdyz jest to dysk z ktorego bootujemy do systemu.
+
+
+NA doł, i done setting up, enter.
+
+Tworzymy drugą partycje: 
+
+Bedzie to partycja na swap. Wedlug zasady, swap powinno wynosic 1.5x/2x RAM.
+Mamy 4GB ramu, wiec 6GB/8GB swap styknie. Zostalo nam akurat podobnie wolnego miejsca.
+Partycja Logical.
+Use as zmieniamy na swap area.
+	
+Zjezdzamy do Finish partitioning and write changes to disk, i Enter.
+
+Yes.
+
+Instaler pyta o nosnik z pakietami, Dajemy No, gdyz takiego nie posiadamy.
+
+Package manager: Dajemy Poland. Teraz netinst doinstaluje potrzebne pakiety.
+
+Wybieram ftp.task.gda.pl, z tego lustra/serwera pobrane zostana dane. Jest on mi najblizszy.
+HTTP Proxy nie ustawiamy, Enter.
+
+Popularity contest - nie bawimy się w zadne zbieranie statystych i ich konkurs, ten Debian ma sluzyc do nauki, No i Enter.
+
+Wybor srodowiska graficznego (nie bierzemy narazie zadnego, ale warto znac):
+
+GNOME - intuicyjny, klasyczny, atrakcyjny dla uzytkownika, dodatkowo zawiera platforme programistyczna oraz framework do tworzenia 
+aplikacji desktopowych
+
+Xfce - lekkie środowisko graficzne dla róznych systemow *NIX (Unix, wczesniej wspominiany INIX, i inne).
+Zaprojektowany z mysla o produktynosci, szybki, oraz oszczedny.
+
+GNOME Flashback - wersja GNOME 3, o wygladzie podobnym do GNOME 2
+
+KDE Plasma - podobny do Windowsa, przyjemnu dla oczu i intuicyjny. Duzo opcji personalizacji,
+oszczednosc zasobow systemu (CPU, RAM).
+
+Cinnamon - odłam GNOME 3, podobny do GNOME. Przyjazny dla uzytkownikow Windowsa. Posiada porzadne
+zabezpieczenia.
+
+MATE - kontynuacja GNOME 2, intuicyjny i atrakcyjny, wykorzystuje tradycyjne elementy Linuxowe i Unixowych systemow.
+
+LXDE - dla starych komputerow / komputerow o slabej wydajnosci / netbookow itp itd
+
+LXQT - podobne do lxde, ale nowsze
+
+web server - do uzytku w przypadku gdy nasz system ma sluzyc jako server web
+
+SSH server - -//- sluzyc do uslugi ssh
+
+
+
+Standard System Utilities:
+
+apt-listchanges
+lsof
+mlocate
+w3m
+at
+libswitch-perl
+xz-utils
+telnet
+dc
+bsd-mailx
+file
+exim4-config
+m4
+bc
+dnsutils
+exim4
+python2.7
+openssh-client
+aptitude
+bash-completion
+python
+host
+install-info
+bzip2
+reportbug
+krb5-locales
+bind9-host
+time
+info
+liblockfile-bin
+whois
+aptitude-common
+patch
+ncurses-term
+mutt
+mime-support
+exim4-daemon-light
+ftp
+nfs-common
+python-reportbug
+rpcbind
+texinfo
+python-minimal
+procmail
+libclass-isa-perl
+python-apt
+python-support
+exim4-base
+debian-faq
+doc-debian
+	(źródło: https://csmojo.com/posts/what-debian-standard-system-utilities-include.html)
+	
+Zaznaczamy tylko standard system utilities, i Continue. Enter.
+
+
+PO dlugim czekaniu, na zapytanie o utworzenie bootloadera GRUB (jest to najczesciej wykorzystywany bootloader w roznych distro Linuxa), odpowiadamy YES. I wybieramy nasz dysk, i enter.
+
+INSTALATION COMPLETE.
+
+Klikamy Continue aby zrobic restarta.
+
+Po restarcie loguje sie swoimi danymi. 
+
+Okazuje sie ze nie odznaczylem Debian Desktop Environment, bo zbootowalo mi od razu na piekny pulpit.. No nic.
+
+Nie wyglada wybitnie, wybralbym cos innego. Finish.

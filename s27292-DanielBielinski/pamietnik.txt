@@ -1,0 +1,7 @@
+2023-03-04
+Moj kochany pamietniczku na dzisiejszych zajeciach nauczylem sie:
+Opis zajec -na zajęciach uczyliśmy się pobierania oraz instalowania 
+Czego sie nauczylas/es - tego w jaki sposób instaluje się poprawnie debiana na virtualboxie
+Co jest dla Ciebie jeszcze nie jasne i musisz poglebic temat - wszystkie opcje instalacji w virtualboxie i za co są one odpowiedzialne
+Co bylo zaskakujacego - to jak szybko instaluje się linuxa w porównaniu do windowsa
+Twoje przemyslenia o calych zajeciach i zadaniach - zadanie wydaje się być trochę czasochłonne ale przynajmniej dogłębnie nauczymy się wszystkiego :smile: :thumbs_up:

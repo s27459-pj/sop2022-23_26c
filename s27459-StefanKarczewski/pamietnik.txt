@@ -1,0 +1,10 @@
+# 2023-03-04
+
+Na dzisiejszych zajęciach nauczyłem się:
+
+- Jak stworzyć maszynę wirtualną w VirtualBox
+- Jakie są formaty dysków do maszyn wirtualnych
+- Jak zainstalować system operacyjny Debian
+- Jak działają partycje logiczne
+- Czym jest parawirtualizacja
+

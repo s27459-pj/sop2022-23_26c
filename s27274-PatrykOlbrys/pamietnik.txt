@@ -1,0 +1,4 @@
+2023-03-04
+Moj kochany pamietniczku na dzisiejszych zajeciach nauczylem sie:
+
+Instalować Debiana. Więcej o systemach plików, środowiskach graficznych. Dowiedziałem się też więcej o virtualboxie, hyper-V oraz trochę sposobach wirtualizacji w chmurze na Azure.
