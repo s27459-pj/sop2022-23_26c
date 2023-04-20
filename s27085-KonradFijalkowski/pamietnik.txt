@@ -17,6 +17,7 @@ Moj kochany pamiętniczku, na dzisiejszych zajeciach nauczyłem sie:
 - o tym jak przekierowac wyniki komendy do wartosci zmiennej,
 - o tym jak operowac na ciagach znakow, o tym jak zmieniac tekst, uzyskiwac jego dlugosc i wykonywac wyrazenia algebraiczne
 - czym sa wyrazenia regularne, komenda "sed"
+
 01.04.2023
 Na dzisiejszych zajeciach nauczyłem się:
 - o funkcjach w skryptach
