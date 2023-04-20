@@ -5,13 +5,13 @@
 # Polecenie:
 # Napisz skrypt wyświetlający na terminalu tekst "Witamy w terminalu".
 # Skorzystaj z komendy echo oraz informacji podanych powyżej.
-# Pamiętaj o atrybutach i o tym jak się wywołuje programy.
+# Pamiętaj o atrybutach i o tym, jak się wywołuje programy.
 
 echo "Witamy w terminalu"
 
-# Drugim rozwiazaniem byloby stworzenie zmiennej, a nastepnie jej wywolanie
+# Drugim rozwiązaniem byłoby stworzenie zmiennej, a następnie jej wywołanie
 
 # printf "%s" $'Witamy w terminalu\n'
-# Trzecie rozwiazanie jakie przychodzi mi do to uzycie printf, ktory znam z Javy i C++
-# Jedyny problem jaki napotkalem to fakt, ze apostrofy nie sprawiaja, aby znaki escapowane byly poprawnie 
-# interpretowane; \n w standardzie ASCII nie jest tlumaczony na znak nowej linii (do zbadania)
+# Trzecie rozwiązanie, jakie przychodzi mi do to użycie printf, które znam z Javy i C++
+# Jedyny problem, jaki napotkałem to fakt, że apostrofy nie sprawiają, aby znaki escapowane były poprawnie
+# interpretowane; \n w standardzie ASCII nie jest tłumaczony na znak nowej linii (do zbadania)
