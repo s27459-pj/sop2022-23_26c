@@ -9,3 +9,10 @@ Dziś na zajęciach:
 	-Utworzyłem swój katalog w lokalnym repozytorium z nazwą podaną w zadaniu tj.  ss25944-KarolSielski
 	-Stowrzyłem ten plik.
 -Z racji braku czasu temat związany z instalacją debian'a (na zajęciach) temat zostanie przerobiony w domu i uzupełniony o informacje z nim związane
+2023-04-01
+Dziś na zajęciach:
+-Nauczyłem się obsługiwać ify, elify, elsy
+-Nauczyłem się obsługi pętli
+-Nauczyłem się jak operować na funkcjach
+-Na pewno muszę więcej poczytać o tablicach w bashu i ich syntaxie, nie za bardzo mi to samodzielnie weszło do głowy
+podczas zadań też nie udało mi się ich nauczyć, usiądzie się i się ogarnie się(wyboru za dużego nie mam :P)
