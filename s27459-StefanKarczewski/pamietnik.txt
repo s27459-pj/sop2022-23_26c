@@ -26,3 +26,19 @@ Na dzisiejszych zajęciach nauczyłem się:
 - O przydatnej stronie do generowania bashowych PS1 - https://bashrcgenerator.com/
 - O operacjach na tekście w zmiennych w bashu (np. ${Hello, World!/World/Universe})
 
+
+# 2023-04-01
+
+https://sites.google.com/pjwstk.edu.pl/t0meck-sop/3-bash-if-y-p%C4%99tle-tablice-funkcje
+
+Na dzisiejszych zajęciach nauczyłem się:
+
+
+- Odświeżyłem informacje na temat wyrażeń warunkowych
+- Jak używać wyrażeń arytmetycznych
+- O istnieniu ${%}, ${%%}, ${#} i ${##}
+- Przypomniałem sobie jak działają pętle
+- O zapisie zakresów w pętlach
+- Jak korzystać z tablic w bashu
+- Jak napisać funkcję z argumentami i zwracanymi wartościami
+- Jak działa `return` w funkcjach
