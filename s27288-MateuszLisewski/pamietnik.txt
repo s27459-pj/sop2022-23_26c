@@ -9,3 +9,11 @@ Na zajęciach nauczyłem się:
 - o zmiennych systemowych,
 - wykonywać operacje na ciągach znaków,
 - pisać oraz wykorzystywać wyrażenia regularne oraz przypomniałem sobie działanie komendy sed
+
+01.04.2023
+
+Na zajęciach nauczyłem się:
+- wykorzystywania wyrażeń warunkowych
+- obsługiwania pętli
+- tworzenia oraz wykorzystania tablic
+- tworzenia funkcji do wielokrotnego wykorzystywania
