@@ -8,3 +8,9 @@ Twoje przemyslenia o calych zajeciach i zadaniach - zadanie wydaje się być tro
 
 2023-03-17
 Moj kochany pamietniczku na dzisiejszych zajeciach sie niczego nie nauczylem bo w nich nie uczestniczylem :(
+
+2023-04-01
+Moj kochany pamietniczku na dzisiejszych zajeciach nauczylem sie:
+Korzystac z if'ów/pętli/talic oraz funkcji w bashu
+Tego w jaki sposób można przeskakiwać poprzez pętle w bashu
+Przypomniałem sobie również troche regexa
