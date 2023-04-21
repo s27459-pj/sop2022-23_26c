@@ -1,0 +1,12 @@
+Najpierw stworzylem plik Dawid.txt z trescia:
+"Dawid Frontczak PJATK Informatyka Dawid PJATK AAAAAA Dawid Gdansk Da"
+
+A tu skrypt:
+
+#!/bin/bash
+
+A=$1 - zmienna ktora przechowa zawartosc wskazanego przez nas pliku
+R=$'\e[31m'    - kolor czerwony to '\e[31mX\e[0m' gdzie X to tekst ktory chcemy
+C=$'\e[0m'       na czerwono, deklaruje tu te obydwie czesci, wpisujac je po prostu w sedzie nie dzialalo
+
+echo -e ${C} $$ sed "s/Dawid/${R}Dawid${C}/g" $A

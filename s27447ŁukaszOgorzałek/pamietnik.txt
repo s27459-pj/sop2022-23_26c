@@ -1,6 +1,27 @@
 2023-03-04
-Moj kochany pamietniczku na dzisiejszych zajeciach nauczylem/lam sie:
-- ...
 
-do uzupełnienia
+Mój kochany pamiętniczku, na dzisiejszych zajęciach nauczyłem się:
+- w jaki sposób zaliczyć przedmiot SOP;
+- jak korzystać z Githuba na potrzeby zajęć;
+- jak korzystać z oprogramowania wirtualizacyjnego VirtualBox;
+- jak zainstalować Debiana na maszynie wirtualnej.
+
+Powinienem:
+- pogłębić wiedzę na temat stosowania oprogramowania wirtualizacyjnego
+oraz systemów operacyjnych, w szczególności Linuxa;
+- zaznajomić się lepiej z funkcjonowaniem Githuba oraz z opcjami, których
+będę w przyszłości z używał.
+
+
+2023-03-18
+
+Na dzisiejszych zajęciach nauczyłem się:
+- nieco więcej o Githubie i jego funkcjach;
+- jak przy pomocy konsoli wykonywać operacje na repozytoriach git;
+- w dużym skrócie: czym jest Bash;
+- podstawy skryptowania w Bashu (skrypty, zmienne, operacje, itd.);
+
+Powinienem:
+- pogłębić wiedzę na temat powłok systemowych oraz języków skryptowych;
+- podszkolić się z podstaw skryptowania w Bashu (składnia, regex, argumenty itp.)
 

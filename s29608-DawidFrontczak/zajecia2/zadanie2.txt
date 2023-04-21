@@ -1,0 +1,53 @@
+Tworze skrypt zad2.sh, o nastepujacej zawartosci: 
+
+" 
+#!/bin/bash 
+X="Dawid Frontczak"
+echo $X
+bash
+echo $X
+"
+
+Nadaje uprawnienia, uruchamiam.
+Wyświetla moje imie i nazwisko tylko raz, a powinno dwa razy.
+To dlatego, ze komenda 'bash' przenosi nas do innej instancji powloki bash, w ktorej nasza
+zadeklarowana wczesniej zmienna X nie istnieje. 
+
+
+Drugi przypadek:
+"
+#!/bin/bash
+X=Dawid Frontczak
+echo $X
+"
+
+Po uruchomieniu dostaje:
+"./zad2.sh: line 2: Frontczak: command not found"
+Nie dziala, gdyz potrzebny jest cudzysłów, aby zapisac dluzszy tekst w zmiennej. Zamiast samego
+Dawid Frontczak, powinno byc "Dawid Frontczak". Działa rowniez z apostrofami.
+
+Przypadek trzeci:
+"
+#!/bin/bash
+X="Dawid Fr"
+Y="PJATK:$X"
+echo="$Y"
+Y='PJATK$X'
+echo "$Y"
+Y=PJATK:$X
+echo "$Y"
+"
+I dostaje taki wynik:
+"
+PJATK:Dawid Fr
+PJATK$X
+PJATK:Dawid Fr
+"
+
+Róznica miedzy uzyciem tutaj ' a " polega na tym, ze przy uzyciu "" wypisana zostanie wartosc przypisana 
+do zmiennej, a przy uzyciu '' jedynie jej nazwa. 
+Dlatego z "" wypisalo i PJATK: i Dawid Fr, a z '' wypisalo jedynie PJATK i nazwe zmiennej ktorej chcielismy uzyc.
+
+$*, $@ - wszystkie argumenty skryptu. Ale obie zmienne różnią się trochę. Kiedy?
+$* przetrzymuje wszystkie argumenty skryptu w pojedynczym stringu,
+a $@ w tablicy stringow (zrodlo: https://unix.stackexchange.com/questions/129072/whats-the-difference-between-and)

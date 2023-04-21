@@ -9,3 +9,13 @@ jest opisywanie WSZYSTKICH opcji i co znaczą. Oczywiście, warto wiedzieć dlac
 że mózg nie jest w stanie pochłonąć takiej ilości informacji na raz, i podejrzewam, że duża część z tego szybko zacznie uciekać. Osobiście
 dużo lepiej przyswajam informacje w mniejszych "gryzach".
 Niemniej zajęcia całościowo oceniam na plus :)
+
+----------------------------------------------------------
+
+2023-03-18
+Moj kochany pamietniczku na dzisiejszych zajeciach nauczylem/lam sie:
+Podstaw pisania skryptów w bashu. Generalnie wszystko było dość proste, chociaż natknęłam się na kilka problemów, np.
+bash program.sh mogłam wywołać bez problemu, ale żeby skorzystać z ./program.sh musiałam już zmienić uprawnienia pliku.
+Regex jako odwieczny wróg programistów również sprawiał trochę problemów i pomimo tego, że miałam wcześniej
+styczność z wyrażeniami regularnymi to kilka momentów frustracji się pojawiło. Jednak pisanie w bashu póki co
+jest bardzo przyjemne i sprawia frajdę :)

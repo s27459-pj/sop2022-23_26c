@@ -1,0 +1,26 @@
+#!/bin/bash
+
+X=tekst
+echo $X
+bash
+echo $X
+
+# Tutaj na górze pierwszy raz zmienna $X
+# wyświetla się prawidłowo, natomiast drugi raz
+# nie może się ona wyświetlić ponieważ
+# wywołaliśmy drugą powłokę, która nie wie co przechowuje $X
+
+X="Tekst dłuższy"
+echo $X
+
+# Jaka jest różnica między " a ' ?
+
+# w cudzysłowach zmienne są zamieniane na wartości
+# w cudzysłowach możemy umieścić więcej niż jedno słowo lub znak oddzielony spacją
+
+# w apostrofach nazwy zmiennych są drukowane jako znaki takie jakie są w kodzie
+# 
+
+A=Al
+echo ${A}a ma kota, a kot ma ${A}ę
+

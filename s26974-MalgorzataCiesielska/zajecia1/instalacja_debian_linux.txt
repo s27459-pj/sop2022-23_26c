@@ -200,7 +200,7 @@ I tym sposobem maszyna wirtualna jest utworzona. Pojawia się po lewej stronie p
 			Od tego co wybierzemy będzie zależeć to ile będziemy mieli 'inode-ów' - czyli miejsc na pliki. Jeśli chcemy tworzyć dużo małych
 			plików odpowiednia będzie opcja 'news'. Dla dużych plików wybieramy 'largefile', a dla jeszcze większych 'largefile4'.
 			Ja wybieram opcję standard gdyż na moje potrzeby jest wystarczająca
-			- 'Bootable flag' - można ustawić 'on' lub 'off'. Gdy włączymy tą opcję, partycja będzie partycją z której będzie bootował system.
+			- 'Bootable flag' - można ustawić 'on' lub 'off'. Gdy włączymy tę opcję, partycja będzie partycją z której będzie bootował system.
 			Tylko jedna partycja może mieć włączoną tą opcję. Ja włączam tą opcję przy tworzeniu tej partycji, ponieważ chcę, żeby była
 			moją partycją bootującą.
 		7j(ii). Teraz tworzę drugą partycję, która będzie moim swap area (opisane wyżej). Zalecana ilość to (ilość RAM + 2) gdy mamy powyżej
@@ -219,7 +219,35 @@ I tym sposobem maszyna wirtualna jest utworzona. Pojawia się po lewej stronie p
 	kroku możemy ustawić proxy HTTP. Ja zostawiam to pole puste. Instalacja idzie dalej. Kolejna decyzja - tym razem trzeba wyrazić zgodę,
 	lub jej brak, na wysyłanie danych a propos najczęściej używanych pakietów do developerów. Nie udzielam zgody, ponieważ kiedy mogę, staram się
 	nie udostępniać takich danych. Wybieramy software do zainstalowania. Mamy do wyboru:
-		7k(i). Różne środowiska graficzne - ja nie wybieram żadnego, ponieważ nie chcę korzystać ze środowiska graficznego
+		7k(i). 'Debian desktop environment' - to zaznaczamy jeśli chcemy mieć środowisko graficzne. Możemy zaznaczyć tylko tę
+		opcję (wtedy domyślnie zostanie zainstalowany GNOME) lub wybrać jedną z opcji z listy:
+			- 'GNOME' - jest to bardzo popularne środowisko graficzne dla Linuxa. Jest przyjazne dla użytkownika, konfigurowalne, i stabilne,
+			natomiast nie należy do 'najlżejszych' i najwydajniejszych, więc nie nadaje się dla systemów z mniejszą ilością pamięci
+			RAM
+			- 'Xfce' - jest to lekkie i wydajne środowisko graficzne, które nadal jest bardzo przyjazne dla użytkownika. Jest to środowisko
+			modularne, które pozwala na zainstalowanie tylko tych części, których potrzebujemy. Posiada również dużo pluginów co jeszcze bardziej
+			zwiększa możliwość dostosowania go do swoich potrzeb
+			- 'Gnome flashback' - wersja Gnome 3, która wizualnie bardzo przypomina Gnome'a 2, z myślą o użytkownikach, którzy
+			preferują wygląd Gnome'a 2
+			- 'KDE Plasma' - najpopularniejsze obok GNOME'a środowisko graficzne. W porównaniu do Gnome'a bardziej przypomina Windowsa i
+			jest bardziej skupione na estetycznym wyglądzie oraz konfigurowalności. Aplikacje na KDE mają też często więcej
+			funkcji niż na Gnomie. Do minusów KDE można zaliczyć jego wymyślność, która dla niektórych użytkowników może być przytłaczająca.
+			Jest też mniej stabilnym systemem w porównaniu do Gnome'a oraz posiada mniej użytkowników, co może utrudniać szukanie pomocy.
+			- 'Cinnamon' - środowisko utworzone na podstawie Gnome'a 3 na potrzeby dystrybucji Linux Mint. Od wersji 2.0 Cinnamon jest
+			już kompletnie odcięty od Gnome'a. Pod względem konfigurowalności i możliwości dostosowania wyglądu leży pomiędzy Gnome'm
+			i KDE. Mamy tu większe możliwości niż Gnome, ale nie ma ich tak przytłaczającej ilości jak w KDE. Cinnamon jest intuicyjny i można
+			z niego korzystać 'out of the box', bez większej konfiguracji, co czyni go przystępnym dla nowych użytkowników. Jest też dość wydajny,
+			więc nadaje się do systemów z mniejszą ilością RAM.
+			- 'MATE' - środowisko oparte na Gnomie 2, którego głównym celem jest zachowanie wyglądu Gnome'a 2, przy jednoczesnym wsparciu
+			nowych aplikacji i technologii. Jest też szybkie i wydajne, zatem również nadaje się do słabszych maszyn.
+			- 'LXDE' - jedno z najlżeszych środowisk graficznych dla Linuxa (lżejsze od Xfce). Jest bardzo wydajne, natomiast
+			bardzo minimalistyczne. Jest też dość stare i nie jest tak aktywnie rozwijane jak np. Xfce
+			- 'LXQt' - środowisko powstałe z połączenia LXDE i  Razor-qt (Razor-qt to kolejne open source środowisko graficzne, praca nad
+			nim została zawieszona na rzecz LXQt). W zamyśle ma zastąpić LXDE, również jest bardzo lekkim środowiskiem, ale jest
+			bardziej aktywnie rozwijane. W praktyce nie ma natomiast dużych różnic między LXDE a LXQt.
+		Gdybym miała instalować na maszynie wirtualnej środowisko graficzne, myślę, że wybrałabym Xfce ze względu na wydajność oraz 
+		możliwość dostosowania do własnych potrzeb. Na prywatnym komputerze prawdopodobnie zainstalowałabym KDE albo Cinnamon ze 
+		względu na ilość opcji i estetykę :) Teraz natomiast nic nie zaznaczam gdyż nie chcę środowiska graficznego.
 		7k(ii). 'Web server' - serwer webowy, nie będę z niego korzystać więc nie zaznaczam
 		7k(iii). 'SSH server' - server SSH, na ten moment nie będzie mi potrzebny więc również nie zaznaczam
 		7k(iv). 'standard system utilities' - standardowe narzędzia systemowe. Najbardziej przydatne narzędzia do pracy z systemem, między innymi

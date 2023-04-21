@@ -1,0 +1,23 @@
+Podpunkt A:
+
+#!/bin/bash
+A=Ala
+B=${A%a}
+
+echo "$A ma kota, a kot ma ${B}ę"
+
+echo "Podaj imie meskie: "
+read C
+echo "$C ma kota, a kot ma ${C}a"
+
+Podpunkt B:
+
+#!/bin/bash
+echo "Podaj tekst: "
+read A
+B=(${#A}-1)
+C="SOP"
+D='\e[32m'$C'\e[0m'
+echo "${A:0:1}"
+echo "${A:B:1}"
+echo -e "${A//$C/$D}

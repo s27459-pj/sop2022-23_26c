@@ -1,0 +1,30 @@
+echo "$PATH"
+Wyświetla ścieżki, w których występują programy. Sa one oddzielone średnikami.
+Może się przydać, gdy szukamy jakiegos danego pliku wykonywalnego, a dokladniej sciezki w której się on znajduje.
+
+echo "$RANDOM"
+Zwraca losową liczbę całkowitą, która zmienia się z kazdym uzyciem. Może się przydac przy pisaniu jakiegos
+skryptu/programu, np. minigry z elementami losowania liczb, funkcji sortującej losowe liczby.
+
+echo "$PWD"
+Wyswietla sciezke w ktorej aktualnie sie znajdujemy. Po przeskoczeniu do innego katalogu komenda 'cd',
+wartosc $PWD zmienia sie na dana sciezke. Moze sie przydac jako zmienna w skrypcie/programie, np.
+do zapisu pliku z wynikiem dzialania w aktualnym katalogu.
+
+echo "$PS1"
+Przy pierwszym uruchomieniu zadziwil mnie wynik. Po krotkiej lekturze (https://wiki.archlinux.org/title/Bash/Prompt_customization) juz rozumiem.
+Zawiera w sobie podstawowy znak zachęty wyswietlany przed kazda komenda. Wyglada zazwyczaj tak: nazwauzytkownika@nazwahosta (w moim przypadku
+s29608@debian)
+
+echo "$USER"
+Wyswietla nazwe uzytkownika aktualnie uzytkujacego z systemu. Przydatne, gdy chcemy dac jakis prompt w skrypcie/programie w stylu:
+"Witaj $USER, milego dnia! Znajdujesz sie aktualnie w: $PWD".
+
+echo "$HOSTNAME"
+Zwraca nazwe hosta, w naszym przypadku debian. Przydatne do identyfikacji w skryptach, można rozszerzyc poprzedni przyklad:
+"Witaj $USER, milego dnia! Znajdujesz sie aktualnie w: $PWD, a aktualny host to $HOSTNAME".
+
+echo "$OSTYPE"
+Zwraca informację na temat typu systemu operacyjnego naszej maszyny. Moze sie przydac przy tworzeniu promptu, ktory informuje uzytkownika
+o jeszcze wiekszej ilosci informacji.
+"Witaj $USER, milego dnia! Znajdujesz sie aktualnie w: $PWD, a aktualny host to $HOSTNAME" Typ twojego OS to: $OSTYPE."

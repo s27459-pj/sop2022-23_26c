@@ -1,0 +1,210 @@
+Zadanie: Instalacja systemu Debian(Linux) na maszynie wirtualnej
+
+1. W przypadku nie posiadania na swoim komputerze programu Virtualbox:
+	1.1. Wchodzimy na stronę https://www.virtualbox.org
+	1.2. Kierujemy się do zakładki downloads
+	1.3. Wybieramy wersje która nas interesuje(Na prywatnym komputerze najnowsza wersja)
+	1.4. instalujemy aplikacje
+	1.5. Wracamy do zakładki downloads i pobieramy zestaw rozszerzeń(O tej samej wersji której mamy virtualbox'a)
+	1.6. Po pobraniu, wchodzimy w virtual boxie w zakładkę "rozszerzenia"
+	1.7. Podajemy scierzkę do pobranego pliku
+
+2. Pobranie obrazu dysku(plik typu .iso) 
+	2.1 Wchodzimy na stronę https://www.debian.org
+	2.2 Kierujemy się do zakładki downlads(pobieranie)
+	2.3 Na samej górze strony znajduje się plik .iso do pobrania.
+	    2.3.1 Jest to plik zawierajacy, wiekszość pakietów potrzebnych systemowi do instalacji. Działa on bez dostępu
+			do internetu. Jest to wygodna opcja z racji tego ze można go pobrać na większości nośników danych. 	
+	    2.3.2 Można z niego wywnioskować, że:
+			- Aktualna wersja oprogramowania to 11-6.0
+			- Jest to wersja na procersory 64-bitowe
+		  	  obsługujące architektóre intela i amd.
+	2.4 Dodatkowo na stronie są podane inne instalacje takie jak:
+		2.4.1 Zamiast obrazu dysku można pobrać cloud image - Pozwala to na przetrzymywanie plików systemowych w chmurze.
+		2.4.2 Wersje na inne architektury procesorów np. takie jak AArch64 czy armel.
+
+3. Przygotowanie pod stowrzenie maszyny wirtualnej w VirtualBoxie
+	3.1 W wirtual boxie wchodzimy w pliki -> ogólne -> Domyślny folder maszyn wirtualnych
+		Tutaj możemy wybrać folder w którym będziemy przetrzymywać nasze maszyny wirtualne.
+
+4. Utworzenie nowej VM
+	4.1 W Virtual boxie klikamy na "Nowa".
+		4.1.1 Mamy także inne opcje utworzenia maszyny wirutalnej takie jak:
+			- Dodanie już istniejącej.
+			
+	4.2 Otwiera nam się okno w którym:
+		4.2.1 Nadajemy wybraną nazwę VM
+		4.2.2 Folder w którym ma się znajdować(Domyślnie jest to domyślny folder)
+		4.2.3 Wybór obrazu dysku z którego chcemy korzystać
+		4.2.4 W przypadku nie tworzenia z obrazu dysku:
+			- Edycje
+			- Rodzine systemu (Windows, MacOS itd)
+			- Wersje danej rodziny systemu
+	4.3 Wypełniamy okno nadając nazwę i wybierając wcześniej pobrany obraz dysku.
+	4.4 Nadajemy nazwę profilu jak i hasło które będzie używane na naszej VM
+	4.5 Przydzielamy ilość pamięci RAM dostępnej dla maszyny jak i ilość rdzeni naszego procesora(Ja dałem 2).
+		4.5.1 Należy rozwarznie wybrać ilość RAM'u tak aby nie obciążyć naszego głownego komputera
+			ja dałem(4096 MB)
+	4.6 Tworzymy wirtualny dysk twardy, tutaj mamy pare opcji:
+		4.6.1 Utworzenie nowego dysku wirtualnego, w którym trzeba:
+			- Ręcznie przypisać wielkość dysku która nas interesuje
+			- Mamy też opcje która pozwala nam wstępnie przydzielić całą wielkość która nas interesuje
+		4.6.2 Użycie wcześniej stworzonego dysku wirualnego
+		4.6.3 Nie dodawać wirtualnego dysku
+	4.7 Wyskoczy nam okno z podsumowaniem wybranych opcji. Po przeanalizowaniu klikamy na "Zakończ"
+	4.8 Po wciśnięciu zakończ rozpocznie się przypisywanie pamięci dla VM jak i folder na nią przeznaczony
+
+5. Po zakończeniu przypisywania zasobów VM, w moim przypadku odpaliła się automatycznie i zaczęła się instalacja
+podstawowego systemu.
+
+6. Konfigurowanie VM.
+	6.1 Po kliknięciu naszej VM w wirutal Boxie pojawi nam się opcja ustawień po wejściu w nią będziemy mieli 
+	    takie opcje jak:
+		6.1.1 Ogólne, znajdują się tu takie rzeczy jak:
+			- Podstawowe czyli:
+				-Nazwa
+				-Typ systemu
+				-Wersja
+			- Zaawanoswane czyli:
+				-Folder do snapshotów(czyli takich backupów dla naszego systemu)
+				-Współdzielony schowek dla naszego głównego systemu i VM
+				-Opcje Drag'n drop pomiędzy naszym systemem a VM
+			- Opis
+			- Opcje pozwalającą nam na szyfrowanie dysku naszej VM
+		6.1.2 System, Znajdują się tu takie rzeczy jak:
+			- Płyta głowna w której możemy:
+				-Przypisać RAM na nowo
+				-Ustwić kolejność bootowania systemu
+				-Chpiset
+				-TPM (Czyli standard układu scalonego)
+				-Urządzenie wskazujące(czyli coś co kieruje naszym kursorem)
+				-I/O APIC(czyli kontroler przerwań systemowych)
+				-Hardware Clock in UTC Time(Ustawianie godziny przez system)
+				-EFI(czyli interfejs odpowiadający za komunikacje pomięczy OS a firmware)
+				-Secure Boot
+			- Procesor w którym możemy:
+				-Przypisać ilość rdzeni na nowo
+				-Pozwolić na dany procent wykorzystania procesora
+				-PAE/NX(Opcja pozwalająca używania więcej niż 4gb przy systemie 32bit)
+				-VT-x/AMD-V(Pozwala to na runowanie wielu OS na jednym komputerze, 
+				 umożliwia to nam VM w VM)
+			- Akceleracja w którym możemy:
+				-Zmienić interfejs parawirutalizacji
+				-Włączyć i wyłączyć Wirtalizacje Sprzętową
+		6.1.3 Ekran, Znajdują się tu takie rzeczy jak:
+			- Ekran w którym możemy:
+				-Przypisać pamięc wideo
+				-Zmienić ilość monitorów
+				-Skalowanie się obrazu na naszym ekranie
+				-Kontroler graficzny
+				-Akceleracje 3D
+			- Zdalny Pulpit który nam pozwala na podłączenie się do 
+			  zdalnego pulpitu(w nim są opcje które nam to umożliwią)
+			- Nagrywanie w którym możemy:
+				-Ustawić tryb nagrywania
+				-Ścieżkę do pliku
+				-Wielkość jednej klatki
+				-Frame rate
+				-Jakość obrazu
+				-Jakość dźwięku
+				-Wybranie ekranu
+		6.1.4 Pamięć, Znajdują się tu takie rzeczy jak:
+			-Wybranie skąd odpala się system
+			-Jak i kontroler(dysk)
+				+Ich nazwy i typy i buforowaanie przy wejsciu/wyjściu
+		6.1.5 Dźwięk, Znajdują się tu takie rzeczy jak:
+			-Sterownik dźwięku
+			-Kontroler audio
+			-Włączenie i wyłączenie dźiwęku
+		6.1.6 Śieć, Znajdują się tu takie rzeczy jak:
+			-Wybór karty sieciowej a w niej
+				-Typ sieci do której jest ona podłączona
+				-Jej nazwa
+			-Zaawansowane opcje karty sieciowej takie jak:
+				- Typ Karty
+				- Tryb nasłuchiwania
+				- Adress MAC
+				- Opcje do zaznaczenia czy kabel jest podłączony
+				- Opcja przekierowywania portów
+		6.1.7 Porty szeregowe, Znajdują się tu takie rzeczy jak:
+			-Wybór portu i ich konfiguracja
+		6.1.8 USB, Znajdują się tu takie rzeczy jak:
+			-Wybór kontrolera USB jak i emulowania podłączenia USB pod nasz "prot"
+		6.1.9 Udostępnione foldery, Znajdują się tu takie rzeczy jak:
+			-Wybór i dodanie folderów ogólnodostępnych dla wielu systemów
+		6.1.10 Interfejs Użytkownika, Znajdują się tu takie rzeczy jak:
+			-Różne opcje pozwalające dostosować interfejs Virtualboxa do naszych preferencji.
+
+7. Instalacja Systemu
+	7.1 Uruchomienie maszyny przyciskiem Uruchom
+	7.2 Otwiera nam się okno instalera w (BIOS mode) mamy w nim opcje:
+		7.2.1 'Graphical install' - Intalacja graficzna czyli opcja w której widzimy środowisko graficzne
+		7.2.2 'Install' - Instalacja tekstowa w której system jest widoczny tylko przez konsolę
+		7.2.3 'Advanced options' - Opcje zaawansowane takie jak:
+			-'Graphical Expert Install' - czyli Instalacja eksperta opcji 'Graphical install' 
+			daje nam ona więcej opcji przy instalacji graficznej
+			-'Graphical Rescue Mode' - czyli tryb awaryjny
+			-'Graphical Automated Install' - instlacja automatyczna
+			-'Expert Install' 'Rescue Mode' 'Automated Install' - Te same opcje dla instalacji tekstowej
+			-'Speech-enabled advanced options' - Opcja dla ludzi którzy są w jakiś sposób niepełnosprawni
+		7.2.4 'Accessible dark contrast installer menu' - opcja ze zwiększonym kontrastem dla osób
+			niedowidzących
+		7.2.5 'Help' - czyli pomoc
+		7.2.6	'Install with speech synthesis' - czyli opcja z sytezatorem mowy
+	7.3 Wybieramy opcje 'Graphical install'
+	7.4 Wybieramy język w którym ma być przeprowadzona Instalacja(w naszym przypadku angielski)
+	7.5 Wybieramy naszą lokalizacje (Czyli strefa czasowa oraz lokalizacja pobierania pakietów).
+	    Wybieramy polskę ale z racji, że jest niedostępna w naszym oknie wybieramy other->Europe->Poland
+	7.6 Wybieramy tzw. locale czyli ustawienia klawiatury, języka itp. (w naszym przypadku United States)
+	7.7 Wybieramy mapowanie klawiatury odpowadające naszemu(w naszym przypadku Polish)
+	*Konfiguracja sieci*
+	7.8 Nadajemy Hostname dla naszej sieci(ja nazwałem debianTestKarol)
+	7.9 Nazwa Domeny - zostawiamy puste ponieważ nie korzystamy z żadnej domeny w naszym przypadku
+	*Ustawienia użytkownika i hasła*
+	7.10 Podajemy Hasło i powtórzenie Hasła dla roota czyli dla konta administratora
+	7.11 Nadajemy nazwę użytkownika
+	7.12 Nadajemy Hasło dla użytkownika
+	*Partycjonowanie Dysku*
+	7.13 Wybieramy jedną z opcji u mnie to będzie (Guided - use entire disk)
+		-Guided - use entire disk - wpomagane przez defaultowe ustawienia praktycznie że automatyczne
+		-Guided - use entire disk and set up LVM - LVM czyli Linux Volume Menager pozwala na używanie partycji 										 zlokalizowaych się na różnych urządzeniach
+		-Guided - use entire disk and set up encrypted LVM - to co wyżej tylko pozwala na enkrypcje dysku
+		-Manual - Czyli manualne tworzenie partycji
+	7.14 Wybieramy dysk do partycjonowania(Mamy tylko jeden przy naszej opcji)
+	7.15 Wybieramy jedą z opcji(W naszym przypadku Separate /home partition)
+		-All files in one partition(Czyli opcja najlepsza dla nowych użytkowników): Wszystkie pliki znajdują się na 		jednej partycji
+		-Separate /home partition: Jest rozdział między systemem a naszymi przetrzymywanymi plikami
+		-Separate /home, /var and /temp partition - czyli najbardziej zaawansowana partycja pozwalająca nam na trzymanie
+		różnego typu danych na różnych partycjach
+	7.16 Kończymy partycjonowanie dysku jak jesteśmy usatysfakcjonowani(ja jestem)
+	7.17 Zaczyna się instalacja systemu
+	7.18 Konifurujemy packet managera
+		7.18.1 wybieramy z jakiego kraju maja byc pobrane pakiety(w naszym przypadku Poland)
+		7.18.2 wybieramy domene skąd mają być pobrane pakiety(w naszym przypadku zostawiamy defaultową czyli 
+			deb.debian.org)
+		7.18.3 Ustawienie proxy HTTP, nas to nie interesuje więc zostaiwamy puste.
+	7.19 Decydujemy się czy chcemy wysyłać statystyki(w naszym przypadku nie bo jeszcze trafi do chińskiego rządu)
+	7.20 Wybieramy oprogramowania które mają się znaleźć na naszym systemie
+		- Debian desktop environment (Czyli basicowe środowisko)
+		- GNOME 
+		- Xfce
+		- GNOME flashback
+		- KDE Plasma
+		- Cinnamon
+		- Mate
+		- LXDE
+		- LXQt
+		- web server
+		- SSH server - opcja pozwala nam na zarządzanie komputerem na odległość
+		- standard system utilities - podstawowe pakiety i narzędzia
+	7.21 Następuje instalacja Software'u
+	7.22 Pojawia się nam opcja instalacji bootloadera - zatwierdzamy.
+	7.23 Instalacja powinna się kontynować
+
+8. Jeżeli nic nam się nie wydarzyło po drodzę powinniśmy mieć czysty system gotowy do roboty.
+
+Przemyślenia:
+-Dobrze odświerzyć wiedzę z ukosów, szczególnie że byłu już praktycznie 1,5 roku temu 
+-Może kiedyś mi się to przydać do pracy zawsze to jakaś dodatkowa umiejętność(chcoć staram się omijać linuxa szerokim łukiem)
+
+KONIEC

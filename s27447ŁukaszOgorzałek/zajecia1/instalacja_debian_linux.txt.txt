@@ -106,7 +106,7 @@ d. Typ pliku z wirtualnym dyskiem – tu należy wybrać typ pliku, który będz
             Na potrzeby tej demonstracyjnej instalacji, wybieramy format VDI, ze
             względu na to, że jest on domyślnym formatem wykorzystywanego
             oprogramowania wirtualizacyjnego i zapewne będzie działał w
-            najbardziej przewidywalny sposób oraz nie ma potrzeby zachowania
+            przewidywalny sposób oraz nie ma potrzeby zachowania
             kompatybilności z oprogramowaniem od innych dostawców usług
             wirtualizacyjnych.
 e. Pamięć na fizycznym dysku twardym – w tym okienku należy wybrać, czy plik
@@ -307,8 +307,8 @@ f. Sieć – sekcja odpowiedzialna za ustawienia sieciowe naszej maszyny wirtual
    zaawansowanych ustawieniach można zmienić także typ karty sieciowej
    (ustawienie powinno być dostosowane do emulowanego systemu) oraz adres
    MAC. Dodatkowo można ustawić reguły przekierowania portów – przydatne,
-   gdy chcemy np. pozwolić urządzeniom zewnętrznym na dostęp do usług
-   komputerowych w sieci lokalnej.
+   gdy chcemy np. połączyć się zdalnie z wirtualną maszyną przez SSH lub korzystać 
+   z innych usług sieciowych działających wewnątrz wirtualnej maszyny.
    Na potrzeby niniejszej demonstracyjnej instalacji, nie ma potrzeby zmieniania
    żadnych z powyższych ustawień, dlatego pozostawiamy je domyślne (włączona
    karta sieciowa).
@@ -317,7 +317,7 @@ g. Porty szeregowe – znajdziemy tu ustawienia dotyczące raczej nieużywanych
    interfejs do podłączania różnych urządzeń. VirtualBox pozwala na ulokowanie
    czterech takich portów.
    Nie ma potrzeby włączania tych portów w związku z naszą instalacją, dlatego
-   pozostawiamy je włączone.
+   pozostawiamy je wyłączone.
 h. USB – w tej sekcji możemy włączyć lub wyłączyć dla maszyny wirtualnej
    wirtualny kontroler USB. Dzięki temu możemy umożliwić maszynie dostęp do
    naszych urządzeń USB bezpośrednio z systemu hosta. W opcjach można też
@@ -595,10 +595,13 @@ o FAT32 file system – system plików będący następcą systemu FAT16. Jest
            plików. Znajdują się tu podkatalogi zawierające wszystkie pliki i katalogi
            w systemie plików oraz wszystkie urządzenia systemowe. Używamy
            tego punktu w przypadku partycji systemowej.
-       o /root     –   punkt    montowania      będący    specjalnym      katalogiem
-           zawierającym pliki i narzędzia potrzebne do uruchomienia systemu,
-           niezbędny do prawidłowego działania systemu operacyjnego. Zazwyczaj
-           zawiera jądro systemu, pliki konfiguracyjne i moduły jądra.
+       o /root     –   punkt    montowania      będący      katalogiem
+		domowym użytkownika root (administratora systemu). W katalogu /root znajdują 
+		się najczęściej pliki konfiguracyjne i prywatne dane administratora systemu, 
+		takie jak np. pliki konfiguracyjne dla programów, prywatne klucze SSH, 
+		pliki dziennika systemowego (logi), itp. Użytkownik root ma pełne uprawnienia 
+		do systemu i ma dostęp do wszystkich plików i katalogów, więc /root jest ważnym 
+		katalogiem dla administracji systemem.
        o /home – punkt montowania będący katalogiem służącym do
            przechowywania danych użytkownika w systemie operacyjnym.
            Zazwyczaj domyślny katalog, w którym użytkownik przechowuje swoje
@@ -710,7 +713,7 @@ c. XFCE – środowisko graficzne wyróżniające się lekkością i szybkości�
    środowiska jest jednak dość przestarzały i mało atrakcyjny, a przy tym samo
    środowisko oferuje mniej funkcji, niż inne, co może być problematyczne dla
    użytkowników, którzy potrzebują bardziej zaawansowanych narzędzi.
-d. GNOME Flashback – środowisko graficzne oparte na GNOME 3, jednak
+d. GNOME Flashback – środowisko graficzne oparte na GNOME 2, jednak
    przeznaczone dla osób, które preferują bardziej tradycyjny styl interfejsu
    użytkownika. Gnome Flashback oferuje klasyczny wygląd pulpitu, w tym menu
    aplikacji w górnym lewym rogu i panel z zadaniami na dole ekranu. Oprócz
@@ -771,10 +774,10 @@ j.   web server – opcja pozwalająca na zainstalowanie i skonfigurowanie serwe
            pakietów serwerów.
 24. W ostatnim oknie instalator pozwala nam podjąć decyzję w związku z instalacją
    bootloadera. W przypadku domyślnej konfiguracji, Debian zainstaluje bootloader
-   GRUB na partycji rozruchowej MBR, co pozwoli na uruchomienie systemu po
-   zakończeniu instalacji. W czasie instalacji systemu Debian, można skonfigurować
-   bootloader tak, aby uwzględniał inne systemy operacyjne, które mogą być
-   zainstalowane na komputerze.
+   GRUB w głównym rekordzie rozruchowym urządzenia blokowego (MBR), co pozwoli na uruchomienie 
+   systemu po zakończeniu instalacji. W czasie instalacji systemu Debian, 
+   można skonfigurować bootloader tak, aby uwzględniał inne systemy operacyjne, 
+   które mogą być zainstalowane na komputerze.
    Na potrzeby niniejszej instalacji, zatwierdzamy instalację bootloadera (wraz ze
    wskazaniem dysku) – bez niego nie będziemy w stanie prawidłowo uruchomić maszyny
    wirtualnej.

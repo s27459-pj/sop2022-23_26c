@@ -151,10 +151,11 @@ Niepodłączona – interfejs sieciowy maszyny wirtualnej jest utworzony, jednak
 (źródło https://ckziumragowo.pl/szkolne-artykuly/2021/Rodzaje-sieci-w-programie-VirtualBox#:~:text=Karta%20sieci%20izolowanej%20(host%2Donly,VDE%2C%20a%20tak%C5%BCe%20tunelowania%20UDP.)"
 
 Karta sieciowa pozostaje bez zmian, moja maszyna nie ma żadnych specjalnych opcji do wykorzystania tylko z jakoś szczególną kartą.
+
 Adres MAC:
-Adres fizycznego sprzętu nadany maszynie przez VB.
-Kabel przyłączony jest podobny do stanu faktycznego kabla w komputerze
-Przekierowanie portów (Port Forwarding) służy do przesyłania usług świadczonych przez maszynę przez internet.
+Media access control adress (MAC address) to unikalny identyfikator przypisany dwo każdego kontrolera interfejsu sieciowego (Network Interface Controller, NIC). Znajduje użycie w drugiej warstwie modelu ISO/OSI (data link layer), np. w protokołach DHCP (ang. Dynamic Host Configuration Portocol), ARP (ang. Adress Resolution Protocol) czy przez ISP (providerzy w subskrypcjach dla jednego adresu udostępniają swoje usługi tylko dla urządzeń z określonymi adresami MAC)
+
+Przekierowanie portów (Port Forwarding) służy do przekierowania pakietów z jednego socketu do drugiego w gatewayu (router, firewall) sieci. Pozwala to zdalnym hostom na łączenie się z urzadzeniami w sieci LAN. 
 
 Porty szeregowe:
 Wykorzystywane do urządzeń sieciowych (np. rollover cable) i przemysłowych, które wciąż te połączenia wykorzystują. Użyteczna przy komunikowaniu się z urządzeniami oczekującymi na ręczną konfiguracje.
@@ -166,9 +167,9 @@ Udostępnianie folderów:
 Opcja do dzielenia katalogów do dzielenia się plikami z członkami sieci. Automatyczne montowanie sprawia, że goszczone systemy automatycznie będa próbowały go zamontować przy starcie. Tylko do odczytu ogranicza dostep do katalogu.
 
 3. Instalacja
-Maszyne można włączyć bez interfejscu graficznego, choć początkowo okno instalacji mszyny się pojawi (osobny start), a bezgłowy start nie wyświtli całkowicie nic.
+Maszyne można włączyć bez interfejscu graficznego, choć początkowo okno instalacji maszyny się pojawi (osobny start), a bezgłowy start nie wyświtli całkowicie nic.
 
-Przyciskiem F12 sprawdzam kolejnośc butowania, literą C przechodzę do GRUBa, boot loader odpowiadającego za kolejność włączania systemów na dyskach operacyjnych. 
+Przyciskiem F12 sprawdzam kolejnośc bootowania, literą C przechodzę do GRUBa, boot loader odpowiadającego za kolejność włączania systemów na dyskach operacyjnych. 
 Instalacji graficznej uzywamy kiedy mamy zasoby i dużo czasu, zaś instalacja zwykła jest szybsza i znajduje lepsze rozwiązanie w połączeniach szeregowych oraz sieciowych.
 
 Wybieram "Install".
@@ -212,16 +213,16 @@ Tworzy możliwośc użytkowania logicznych dysków wirtualnych. Pozwala to w cza
 Dodatkowo zaszyfrowane partycje (partycja swapowa powinna byc szyfrowana)
 
 -Manual:
-	-iSCSI volumes - montowanie dysków przez sieć
+	- iSCSI volumes - montowanie dysków przez sieć
 	- wybranie własnego dysku (podział z użyciem 1000, a nie jak 1024 w microsofcie)
-Tworzymy nowy MBR, który pozwala na tylko 4 partycje podstawowe. Ewentualnie można stworzyć partycje rozszerzoną z partycjami logicznymi. Wynika to z faktu że record trzymający ilość dysków ma tylko 2 bity.
+Tworzymy nowy MBR, który pozwala na tylko 4 partycje podstawowe. W razie potrzeby posiadania większej ilości partycji należy stworzyć partycje rozszerzoną, a w niej kolejne partycjne logiczne. Wynika to z faktu, że MBR ma tylko 64 bajty na tablice partycje (ang. partition table), a iformacje o jednej partycje mają 16 bajtów (64/16 = 4).
 Robię jedną partycje podstawową z 4 GB miejsca, tak na początek.
 
 Przestrzeń wymiany powinna mieć 1,5 do 2 razy ilości RAMu, dlatego tworzę partycje z 2GB miejsca.
 
 Systemy plików:
 "Ext4: większe limity rozmiaru, obsługa extents, prealokacja, opóźniona alokacja, kompatybilność wsteczna, zwiększona liczba obsługiwanych podfolderów
-Ext3: system księgowania, break możliwości skasowanych plików
+Ext3: system księgowania (dokładny zapis zmian na dysku), brak możliwości odzyskania skasowanych plików w odróżnieniu od ext2
 Ext2: posiadał systemy zapobiegania defragmentacji dysku, rozpoznawania uszkodzeń oraz wolne pola w strukturach danych
 btrfs: możliwość zmiany rozmiaru partycji online, Dodawanie/usuwanie urządzeń blokowych w locie, RAID na poziomie obiektów – możliwość stworzenia odpowiednika RAID1 oraz RAID0, migawki, metadane, kompresja w locie, defragmentacja online, aresacja do 16 eksabajtów
 JFS(Journaled File System): extents, księgowanie, B+ drzewa, 32PB rozmiaru partycji

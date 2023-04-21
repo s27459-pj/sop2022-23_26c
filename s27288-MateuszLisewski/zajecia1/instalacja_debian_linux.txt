@@ -227,7 +227,53 @@ Ext4 journaling file system, Ext3 journaling file system, Ext2 file system, btrf
 XFS journaling file system, FAT16 file system, FAT32 file system, swap area, physical volume for encryption, physical volume for RAID,
 physical volume for LVM, do not use the partition. 
 
-Dokładne informacje o każdym formacie są zawarte w dokumentacji Debiana: https://wiki.debian.org/FileSystem 
+Informacje o każdym formacie są zawarte w dokumentacji Debiana: https://wiki.debian.org/FileSystem.
+Szczegółowe informacje o poszczególnych systemach plików są zawarte w linkach w tabeli na powyższej stronie.
+
+Poniżej została przedstawiona lista cech systemów plików.
+Ext4:
+- System plików dziennika
+- Obsługuje rozmiary plików do 16 terabajtów i woluminy do 1 eksabajta
+- Poprawiona wydajność i niezawodność w porównaniu z poprzednimi systemami plików Ext
+
+Ext3:
+- System plików dziennika
+- Kompatybilny z systemem plików Ext2
+- Obsługuje rozmiary plików do 2 terabajtów
+
+Ext2:
+- System plików niezwiązany z dziennikiem
+- Kompatybilny z systemem plików Ext3
+- Obsługuje rozmiary plików do 2 terabajtów
+
+btrfs:
+- System plików kopiowania przy zapisie
+- Obsługuje migawki i podwoluminy w celu elastycznego zarządzania danymi
+- Obsługuje rozmiary plików do 16 eksabajtów
+
+JFS:
+- System plików dziennika
+- Obsługuje rozmiary plików do 4 petabajtów
+- Obsługuje rejestrowanie metadanych w celu szybszego odzyskiwania po awarii
+
+XFS:
+- Wysokowydajny system plików z dziennikiem
+- Obsługuje rozmiary plików do 8 eksabajtów
+- Zaprojektowany z myślą o skalowalności i wysokiej współbieżności
+
+FAT16:
+- Starszy system plików
+- Ograniczona obsługa plików i rozmiarów woluminów (do 2 gigabajtów)
+- Szeroko stosowany w starszych komputerach i wymiennych urządzeniach pamięci masowej
+
+FAT32:
+- Obsługuje większe rozmiary plików i woluminów (odpowiednio do 4 gigabajtów i 2 terabajty)
+- Szeroko stosowany w wymiennych urządzeniach pamięci masowej
+
+Swap area:
+- Specjalna partycja używana do zarządzania pamięcią wirtualną
+- Przechowuje dane tymczasowo, gdy pamięć fizyczna systemu (RAM) jest pełna
+- Poprawia wydajność systemu, umożliwiając jednoczesne uruchamianie większej liczby programów.
 
 W Debianie głównie używa się systemu plików Ext4, ponieważ jest on najnowszą wersją przystosowaną do tego systemu operacyjnego. 
 Używa się także systemu plików swap dla partycji wymiany. Gdy wybieramy automatyczne utworzenie partycji z LVM tworzy się także partycja boot w systemie Ext2. 
@@ -250,23 +296,41 @@ przy dystrybucji płytowej.
 
 Następny krokiem instalacji jest wybór kolekcji oprogramowania. Dostępne są graficzne nakładki środowiska: 
 
-- Debian Desktop envoirement – Standardowa wersja graficzna systemu Debian 
+- Debian Desktop envoirement – Standardowa wersja graficzna systemu Debian
+Standardowe środowisko graficzne dla Debiana
+Oparte na środowisku graficznym GNOME 
 
 - GNOME - https://wiki.debian.org/Gnome 
+Nowoczesne i przyjazne dla użytkownika środowisko graficzne
+Domyślne środowisko graficzne dla Debiana
 
 - Xfce - https://wiki.debian.org/Xfce 
+Lekkie i szybkie środowisko graficzne
+Odpowiedni dla starszego sprzętu lub użytkowników preferujących minimalistyczny interfejs
 
 - GNOME Flashback - https://wiki.gnome.org/Projects/GnomeFlashback 
+Tradycyjne środowisko graficzne przypominające GNOME 2
+Zapewnia klasyczne środowisko pulpitu
 
 - KDE Plasma - https://wiki.debian.org/KDE 
+Nowoczesne i bogate w funkcje środowisko graficzne
+Oferuje wysoki poziom dostosowywania i elastyczności
 
 - Cinnamon - https://github.com/linuxmint/cinnamon 
+Intuicyjne i atrakcyjne wizualnie środowisko graficzne
+Oferuje tradycyjne środowisko pulpitu z nowoczesnymi elementami konstrukcyjnymi
 
 - MATE - https://mate-desktop.org/ 
+Rozwidlenie środowiska graficznego GNOME 2
+Zapewnia klasyczne środowisko pulpitu z nowoczesnymi funkcjami
 
 - LXDE - https://wiki.debian.org/LXDE 
+Lekkie środowisko graficzne przeznaczone dla sprzętu z niższej półki
+Prosty i konfigurowalny interfejs
 
 - LXQt - https://wiki.debian.org/LXQt 
+Lekkie środowisko graficzne oparte na frameworku Qt
+Zaprojektowany jako modułowy i konfigurowalny
 
 Dodatkowymi kolekcjami są: 
 
@@ -274,7 +338,8 @@ Dodatkowymi kolekcjami są:
 
 - SSH server - aplikacje przydatne do utworzenia i zarządzania serwerem SSH. 
 
-Najważniejszym i koniecznym do prawidłowego działania jest “standard system utilities”, które posiada najpotrzebniejsze aplikacje do działania systemu. 
+Najważniejszym, lecz nie koniecznym do prawidłowego działania jest “standard system utilities”. Jest to paczka standardowych/najpotrzebniejszych
+aplikacji. Bez tej paczki system będzie działał, ale możliwości pracy będą ograniczone przez brak najpotrzebniejszych aplikacji.
 
 
 Po wybraniu kolekcji oprogramowania instalacja wybranych opcji rozpoczyna się. 

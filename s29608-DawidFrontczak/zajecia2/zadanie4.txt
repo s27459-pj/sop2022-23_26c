@@ -1,0 +1,21 @@
+#!/bin/bash
+X=(ls -l)
+echo "$X"
+
+Wyświetla poprawnie, jedynie brakuje kolorków. 
+
+
+#!/bin/bash
+X=(ls -l)
+echo '$X'
+
+Wyświetla "$X". Uzycie '' sprawia ze wypisujemy doslownie to, co zawarlismy w srodku, a nie wartosc
+zmiennej X.
+
+
+#!/bin/bash
+X=(ls -l)
+echo $X
+
+Wyświetla to co powinno, ale bez znakow nowej linii. Uzycie tutaj samego $X bez "" sprawia
+ze wypisana zostanie zawartosc zmiennej X z pominieciem znakow nowej linii.

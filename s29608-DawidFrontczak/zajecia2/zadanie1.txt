@@ -1,1 +1,13 @@
+Skrypt zad1.sh:
+"
+#!/bin/bash
+echo "Witamy w terminalu"
+"
 
+Daje prawa do wykonywania:
+chmod u+x zad1.sh
+
+I uruchamiam
+./zad1.sh
+
+Działa.
