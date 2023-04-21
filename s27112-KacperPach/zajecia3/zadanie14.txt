@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# wypisuje pliki w osobnych liniach a nastepnie zliczam linie 
+fileCount=$(ls -1 | wc -l)
+
+if [ "$fileCount" -gt 5 ]; then
+  echo "W tym katalogu jest więcej niż 5 plików"
+else
+  echo "W tym katalogu jest 5 lub mniej plików"
+fi
