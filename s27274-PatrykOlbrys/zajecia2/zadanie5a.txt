@@ -8,6 +8,5 @@ last_char="${imie:$imie_len-1}"
 if [ $last_char == 'a' ]; then
     echo "${imie} ma kota, a kot ma ${imie:0:$imie_len-1}ę"
 else
-    last_two_chars=${imie:$imie_len-2}
     echo "${imie} ma kota, a kot ma ${imie}a"
 fi

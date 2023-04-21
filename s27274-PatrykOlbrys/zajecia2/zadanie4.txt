@@ -2,4 +2,7 @@
 
 X=$(ls -l)
 
-echo $X
+echo "$X"
+
+Zmienną $X czyli output z komendy ls -l należy wziąć w cudzysłów ponieważ
+bez niego nie wydrukują się kolejne linie za pomocą polecenia echo

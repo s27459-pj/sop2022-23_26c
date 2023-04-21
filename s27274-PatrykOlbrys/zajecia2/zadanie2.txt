@@ -21,6 +21,10 @@ echo $X
 # w apostrofach nazwy zmiennych są drukowane jako znaki takie jakie są w kodzie
 # 
 
-A=Al
+A=Ala
 echo ${A}a ma kota, a kot ma ${A}ę
+
+# Tak, tu coś będzie nie tak, zaraz to naprawimy. Nie będziemy modyfikować wartości zmiennej A.
+
+# Tutaj można podmienić znaki ${A/a/ę} Zamiast "kot ma Alaę" wypisze "kot ma Alę"
 
