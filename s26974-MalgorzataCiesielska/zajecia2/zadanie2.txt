@@ -1,8 +1,6 @@
 ZADANIE 2
 
 1. Zobacz taką serię poleceń:
-
-#!bin/bash
 X=tekst
 echo $X
 bash
@@ -10,11 +8,9 @@ echo $X
 
 Co się stało? Czy potrafisz wyjaśnić?
 
-Wynikiem wywołania programu jest wyświetlenie wartości zmiennej X ('tekst') jednokrotnie.
-Wartość jest wyświetlana jednokrotnie ponieważ komenda 'bash' otwiera nową powłokę
-zagnieżdżoną w naszej powłoce, więc program nie może przejść dalej.
-Wartość zostanie wypisana po raz drugi dopiero, gdy wpiszemy 'exit' aby wyjść z zagnieżdżonej
-powłoki.
+Po pierwszym wywołaniu echo $X w konsoli jest wyświetlana wartość zmiennej X, natomiast po drugim nie. Dzieje się tak, 
+ponieważ polecenie "bash" otwiera drugą powłokę wewnątrz obecnej powłoki, a w tej podpowłoce nie przypisaliśmy
+wartości do zmiennej X.
 
 ---------------------------
 

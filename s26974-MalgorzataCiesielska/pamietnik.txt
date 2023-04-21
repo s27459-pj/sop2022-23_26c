@@ -19,3 +19,12 @@ bash program.sh mogłam wywołać bez problemu, ale żeby skorzystać z ./progra
 Regex jako odwieczny wróg programistów również sprawiał trochę problemów i pomimo tego, że miałam wcześniej
 styczność z wyrażeniami regularnymi to kilka momentów frustracji się pojawiło. Jednak pisanie w bashu póki co
 jest bardzo przyjemne i sprawia frajdę :)
+
+----------------------------------------------------------
+
+2023-04-01
+Moj kochany pamietniczku na dzisiejszych zajeciach nauczylem/lam sie:
+If-ów, pętli, oraz funkcji w bashu. Te zajęcia były póki co najciekawsze, było więcej okazji do zastanowienia się nad 
+sposobem rozwiązania zadania :) Było trochę "pułapek", np. różnica między if [[ ]] oraz if [ ], konieczność
+pisania 'fi' na końcu if-a i 'done' na końcu pętli for, ale logika pozostaje taka sama jak w c#, pythonie, itd, więc te
+konstrukty nie były bardzo trudne do zrozumienia
