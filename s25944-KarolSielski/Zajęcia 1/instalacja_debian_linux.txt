@@ -7,7 +7,7 @@ Zadanie: Instalacja systemu Debian(Linux) na maszynie wirtualnej
 	1.4. instalujemy aplikacje
 	1.5. Wracamy do zakładki downloads i pobieramy zestaw rozszerzeń(O tej samej wersji której mamy virtualbox'a)
 	1.6. Po pobraniu, wchodzimy w virtual boxie w zakładkę "rozszerzenia"
-	1.7. Podajemy scierzkę do pobranego pliku
+	1.7. Podajemy scieżkę do pobranego pliku
 
 2. Pobranie obrazu dysku(plik typu .iso) 
 	2.1 Wchodzimy na stronę https://www.debian.org
@@ -169,10 +169,80 @@ podstawowego systemu.
 		-Guided - use entire disk - wpomagane przez defaultowe ustawienia praktycznie że automatyczne
 		-Guided - use entire disk and set up LVM - LVM czyli Linux Volume Menager pozwala na używanie partycji 										 zlokalizowaych się na różnych urządzeniach
 		-Guided - use entire disk and set up encrypted LVM - to co wyżej tylko pozwala na enkrypcje dysku
-		-Manual - Czyli manualne tworzenie partycji
+		-Manual - Czyli manualne tworzenie partycji(punkt 7.13.2)
+	7.13.2
+		-Otwiera nam się okno w którym mamy do wyboru:
+			-Guided Partitioning(przenosi nas do wspomaganego partycjonowania)
+			-Configure iSCSI volumes(pozwala na konfiguracje dysku przez internet dzięki protokołowi TCP/IP)
+			-Nasz dysk wirutalny(w moim przypdaku opcja ta nazywa się SCSI (0,0,0)(sda) - 21.5GB(...) <- to wybieramy
+		-Klikamy w opcje która pojawia się pod naszym dyskiem oznaczoną "Free Space"
+		-Mamy do wyboru opcje
+			-Create a new partition <- to wybieramy
+			-Automatically partition the free space
+			-Show Cylinder/Head/Sector information
+		-Wpisujemy wielkość naszej pierwszej podstawowej partycji(niech będzie 50%, instalator pozwala
+		 na wielkości procentowe)
+		-Wybieramy opcje "Primary"
+		-Decydujemy czy partycja ma być stworzona "na początku" lub "na końcu" dysku, wybieramy początek
+		-Następnie otwiera nam się okno konfiguracji partycji w którym mamy takie rzeczy jak:
+			-Use as: (czyli przeznaczenie dysku)
+				-Ext4 journaling file system, czyli system księgowania plików. Jest to jeden z najpopularniejszych 
+				systemów tego przeznaczenia. Ext4 jest także najnowszym i najbardziej rozbudowanym wydaniem tego systemu.
+				Pozwala na obsługę większych woluminów nawet do 1 eksbibajta, czy brak limitu obsługiwanych podfolderów.
+				więcej można się dowiedzieć pod linkiem: https://pl.wikipedia.org/wiki/Ext4
+				-Ext3 journaling file system, starsza i bardziej ograniczona wersja Ext4
+				-Ext2 file system, jeszcze starsza wersja systemu. Warto zaznaczyć że nie używa księgowania, czyli 
+				sposobu zapisu danych dzięki któremu pliki przed zapisem na dysk są najpierw zapisywane do journal'a,
+				który zmniejsza prawdopodobieństwo utraty danych
+				-btrfs journaling file system, system zapisu plików używający techniki 
+				Kopiowanie przy zapisie (ang. copy-on-write, COW), używane w przypdaku wspóldzielenia względnie dużej 
+				ilości danych(między wątkami czy procesami) [wg. Wikipedii, link: https://pl.wikipedia.org/wiki/Kopiowanie_przy_zapisie]
+				Jest to system nowszy od Ext4.(szybki wydajny ale nadal w testowany więc nie jest najbezpieczniejszy)
+				-JFS journaling file system, system plików z księgowaniem stworzony przez IBM 
+				-XSF journaling file system, system opracowany przez Silicon Graphics pozwalający na obsługę dużych dysków twardych.
+				-FAT16 stary system systemu plików(Stosowany do Windows 95) w którym najważnieszym elementem jest tablica
+				 opiera się na technologi File Allocation Table. 
+				-FAT32 następca FAT16
+				-Swap area, czyli pamięć dyskowa działająca jako sztuczna pamięć RAM(o wiele wolniejsze niż zywkły RAM)
+				[CYTAT z https://askubuntu.com/questions/508870/what-is-a-swap-area]
+				The Swap Area is just fake RAM that lives on your hard drive. It is much slower than actual RAM, but is necessary
+				 in many cases to keep a computer running normally. 
+				A good rule of thumb is to have as much swap space as you do normal RAM.
+				[KONIEC CYTATU]
+				-physical volume for encryption, opcja pozwalająca na korzystanie z szyfrowania dysku
+				-physical volume for RAID, opcja do tworzenia jednego wirtualnego dysku z wielu dysków dane są 
+				 zapisywane na kilku fizycznych dyskach.
+				-physical volume for LVM, opcja pozwalająca stworzyć dużą partycje z wielu małych dysków.
+			-Wybieramy Ext4 jako że jest to domyślna opcja
+			-Mount point:
+				-"/" system plików dla root'a <- to wybieramy ponieważ jest to nasza partycja systemowa
+				-"/boot" partycja odpowiadająca za przetrzymywanie plików odpowiedzialnych za startowanie systemu
+				-"/home" czyli partycja domowa "rzeczy w folderze home"
+				-"/tmp" pliki tymczasowe
+				-"/usr" statyczne pliki użytkownika
+				-"/var" partycja przechowująca dane które się często zmieniają takie jak dane aplikacji, czy logi danego oprogramowania
+				-"/srv" partycja która przechowuje dane usług czy serwuisów(nie jest ona wymagana dla systemu)
+				-"/opt" partycja przeznaczona dla pakietów i/lub aplikacji instalowanych na system operacyjny
+				-"/usr/local" partycja przeznaczona do programów i aplikacji zainstalowanych na systemie przez użytkownika(lokalnie)
+			-Mount options: Są to opcje które określają, w jaki sposób jest partycja montowana i jaki daję dostęp, uprawnienia i ograniczenia
+			dla użytownika jeżeli chodzi o pliki na niej się znajdujące.
+			-Label czyli nazwa/etykieta systemu
+			-Typical usage czyli to w jaki sposób będzie system przeznaczony:
+				- opcje są pogrupowane od (najwięcej plików, najmniejsza waga do najmniej plików o dużej wadze)
+			-Bootable flag, jest opcją którą jak włączymy będzie oznaczała dla systemu, że z tej partycji jest bootowany system.
+			Tylko jedna partycja moze mieć to włączone
+			-Reserved blocks, jest to miejsce na dysku przeznaczona dla superużytkownika popularnie zwanym rootem, przestrzeń ta
+			jest potrzebna do wykonania niektórych zadań takich jak np. przywracanie systemu.
+			-Usuń Partycje
+			-Zakończ
+
+		-Po zakończeniu naszej podstawowej partycji dzielimy reszte miejsca na dysku/dyskach według uznania i potrzeb(zawsze warto jest 
+		uwzględnić swap area i )
+		-Jeżeli jesteśmy zadowoleni ze sposobu podziału naszego dysku klikamy Finish partitioning and write changes to disk
+		-Klikamy Yes na zmianach i przechodzimy dalej
 	7.14 Wybieramy dysk do partycjonowania(Mamy tylko jeden przy naszej opcji)
 	7.15 Wybieramy jedą z opcji(W naszym przypadku Separate /home partition)
-		-All files in one partition(Czyli opcja najlepsza dla nowych użytkowników): Wszystkie pliki znajdują się na 		jednej partycji
+		-All files in one partition(Czyli opcja najlepsza dla nowych użytkowników): Wszystkie pliki znajdują się na jednej partycji
 		-Separate /home partition: Jest rozdział między systemem a naszymi przetrzymywanymi plikami
 		-Separate /home, /var and /temp partition - czyli najbardziej zaawansowana partycja pozwalająca nam na trzymanie
 		różnego typu danych na różnych partycjach
@@ -185,20 +255,36 @@ podstawowego systemu.
 		7.18.3 Ustawienie proxy HTTP, nas to nie interesuje więc zostaiwamy puste.
 	7.19 Decydujemy się czy chcemy wysyłać statystyki(w naszym przypadku nie bo jeszcze trafi do chińskiego rządu)
 	7.20 Wybieramy oprogramowania które mają się znaleźć na naszym systemie
-		- Debian desktop environment (Czyli basicowe środowisko)
-		- GNOME 
-		- Xfce
-		- GNOME flashback
-		- KDE Plasma
-		- Cinnamon
-		- Mate
-		- LXDE
-		- LXQt
+		- Debian desktop environment (Czyli basicowe środowisko): Proste i przejrzyste, posiada standardowo dobrane funkcje jest to dobra
+			opcja dla osoby zaczynającej swoje przygody z debianem. Wymagania systemowe nie są wygórowane
+		- GNOME: Jest to pełene środowisko z wieloma funkcjami i aplikacjami. Przeznaczone dla ludzi którzy oczekują bogatego środowiska. 
+			Wymagania systemowe są duże
+		- Xfce: Jest to lekkie środowisko graficzne z wygodnym i intuicyjnym interfejsem, posiada także łatwe w użyciu narzędzia konfiguracyjne.
+			Wymagania systemowe nie są duże
+		- GNOME flashback to gnome z przypominająca starsze wersje tego środowiska. Idealne oprogramowanie dla osób które chcą korzystać z gnome
+			ale preferują mniej przytłaczający interfejs. Wymagania są mniejsze od podstawowego GNOME
+		- KDE Plasma: Pełne środowisko graficzne bogate w funkcje i narzędzia. Interfejs jest zbliżony do tego co znamy na Windowsie. Aplikacje
+			mają w niektórych przypadkach więcej funkcji niż te na GNOME. Mniej popularny niż gnome. Wymagania są duże
+		- Cinnamon: Oparte na GNOME środowisko z minimalistycznym interfejsem. Oferuje pdostawowe i proste w użyciu 
+			narzędzia konfiguracyjne, łatwe w nawigacji menu i wiele przydatnych funckcij. 
+			Wymagania nie są wysokie (oparte na starszych systemach)
+		- Mate: Kolejne środowisko oparte o GNOME z prostym interfejsem. Posiada wiele narzędzi i funkcji. Nie jest to wymagające środowisko
+			co sprawia że jest ono dobre dla starszych lub gorzej wyposażonych maszyn.
+		- LXDE: Bardzo lekkie środowisko z bardzo niskimi wymaganiami. Posiada minimalistyczny i prosty interfejs oraz ma w zanadrzu podstawowe
+			narzędzia i funkcje.
+		- LXQt: Środowisko zbudowane na bazie bibliotek Qt i powstało z połączenia środowisk LXDE-QT i Razor-qt. Ma niskie 
+			wymagania i ubogi interfejs. Jak wszystkie posiada łatwe w użyciu narzędzia i podstawowe fukcje.
 		- web server
 		- SSH server - opcja pozwala nam na zarządzanie komputerem na odległość
 		- standard system utilities - podstawowe pakiety i narzędzia
 	7.21 Następuje instalacja Software'u
-	7.22 Pojawia się nam opcja instalacji bootloadera - zatwierdzamy.
+	7.22 Pojawia się nam opcja instalacji bootloadera
+		W przypadku w którym idziemy drogą domyślenej konfiguracji po kliknięciu tak, instalator zainstaluje bootloader GRUB. Dzięki niemu
+		będziemy w stanie odpalić system po zakończeniu instalacji. (Bezpieczne do użycia w wypadku w którym mamy tylko jeden system na maszynie)
+		GRUB będzie zainstalowany na dysku który wybierzemy (domyślnie jest to /dev/sda ale możemy skonfigurować do wybrania innego 
+		dysku/partycji czy pamięci przenośnej) w imie domyślnej konfiguracji będzie to /dev/sda.
+		Instalacja bezpośrednio na partycji jest przydatne w przypadku posaidania kilku systemów na jednym dysku. W ten sposób mamy kontrole
+		który system uruchomi się bezpośrednio po starcie
 	7.23 Instalacja powinna się kontynować
 
 8. Jeżeli nic nam się nie wydarzyło po drodzę powinniśmy mieć czysty system gotowy do roboty.
