@@ -1,7 +1,15 @@
 2023-03-04
-Moj kochany pamietniczku na dzisiejszych zajeciach nauczylem/lam sie:
+Mój kochany pamiętniczku na dzisiejszych zajęciach nauczyłem się:
 Nic gdyż nie byłem obecny na zajęciach
 
-2023-03-17
-Moj kochany pamietniczku na dzisiejszych zajeciach nauczylem/lam sie:
+2023-03-18
+Mój kochany pamiętniczku na dzisiejszych zajęciach nauczyłem się:
 Nic gdyż nie byłem obecny na zajęciach
+
+2023-04-01
+Mój kochany pamiętniczku na dzisiejszych zajęciach nauczyłem się:
+Korzystania z wyrażeń warunkowych w bash-u, w tym testowania wyrażeń regularnych.
+Iterowania się w bash-u z pomocą pętli for i pętli while.
+Dowiedziałem się także o tablicach, wyciąganiu poszczególnych elementów,
+wyciąganiu wszystkich elementów, a także długości.
+Poznałem także funkcje, jak one się zachowują i jak mogą zwracać wynik do reszty skryptu.
