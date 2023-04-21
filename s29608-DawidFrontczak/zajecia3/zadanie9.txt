@@ -1,0 +1,13 @@
+#!/bin/bash
+files=("$@")
+
+for (( i=0; i<${#files[@]}; i++ )); do
+echo "Plik: ${files[i]}"
+
+cat "${files[i]}"
+echo
+
+tac "${files[i]}"
+echo
+
+done

@@ -1,0 +1,8 @@
+#!/bin/bash
+kolorowanieTekstu() {
+echo -e "\033[$2m$1\033[0m"
+}
+kolorowanieTekstu "Czerwony" 31
+kolorowanieTekstu "Niebieski" 34
+kolorowanieTekstu "Zolty" 33
+kolorowanieTekstu "Zielony" 32
