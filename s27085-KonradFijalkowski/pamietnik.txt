@@ -26,3 +26,8 @@ Na dzisiejszych zajeciach nauczyłem się:
 - o globbingu i word splittingu
 - o tablicach
 - o regular expressions
+
+22.04.2023
+Na dzisiejszych zajęciach nauczyłem się:
+- odczytywania argumentów wywoałania programu,
+- o kompilacji programó napisanych w języku C,

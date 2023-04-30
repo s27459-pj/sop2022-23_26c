@@ -1,2 +1,11 @@
 #ignore .idea directory
 .idea/
+
+#ignore .pdf files
+*.pdf
+
+#ignore binary files
+*.exe
+
+#ignore text sample files
+*.txt
