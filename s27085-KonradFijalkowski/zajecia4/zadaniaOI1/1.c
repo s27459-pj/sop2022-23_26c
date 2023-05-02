@@ -3,16 +3,30 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#define BUFFER_SIZE 1024
 
 bool isSourceFileGiven(int numberOfParameters){
     return numberOfParameters == 2 ? true : false;
 }
 
+void readInReverseFromFile(FILE *fileToRead, int fileByteSize){
+    int readCharNumber = 0;
+    char readChar;
+
+    while(readCharNumber<=fileByteSize){
+        readCharNumber++;
+        fseek(fileToRead, -readCharNumber, SEEK_END);
+        readChar = fgetc(fileToRead);
+        if(readChar == '\n') {
+            readCharNumber++;
+        }
+            printf("%c", readChar);
+        //https://stackoverflow.com/questions/21844064/size-of-string-literal-consisting-of-escaped-characters
+    }
+}
+
 int main(int argc, char** argv){
     FILE *fileToRead;
-    FILE *fileToWrite;
-    char *linesLengthInBytes = malloc(500*sizeof(char));
-    char readLine[100];
     int fileByteSize;
 
     if(isSourceFileGiven(argc)) {
@@ -20,28 +34,30 @@ int main(int argc, char** argv){
         if(fileToRead == NULL) {
             return 0;
         }
-        fileToWrite = fopen("wynik.txt", "w");
         fseek(fileToRead, 0, SEEK_END);
         fileByteSize = ftell(fileToRead);
-        int readCharNumber = 0;
 
-        while(readCharNumber<fileByteSize){
-            readCharNumber++;
-            fseek(fileToRead, -readCharNumber, SEEK_END);
-            if(!isdigit(fgetc(fileToRead))) {
-                readCharNumber++;
-            }
-            fseek(fileToRead, -readCharNumber, SEEK_END);
-            printf("%c", fgetc(fileToRead));
-        }
+        readInReverseFromFile(fileToRead, fileByteSize);
     }
+    else{
+        if(feof(stdin)){
+            printf("Stdin contains eof\n");
+        }
+        int read;
+        void *bufferContent = malloc(BUFFER_SIZE);
 
-//    else{
-//        while(fscanf(stdin, "%s", readLine) != EOF){
-//            printf("%s\n", readLine);
-//        }
-//    }
+        fileToRead = fopen( "tempBuffer.txt", "w+");
+
+        while(read = fread(bufferContent, 1, BUFFER_SIZE, stdin)){
+            fwrite(bufferContent, 1, read, fileToRead);
+        }
+
+        fileByteSize = ftell(fileToRead);
+        readInReverseFromFile(fileToRead, fileByteSize);
+
+        remove("tempBuffer.txt");
+        free(bufferContent);
+    }
     fclose(fileToRead);
-    fclose(fileToWrite);
     return 0;
 }
