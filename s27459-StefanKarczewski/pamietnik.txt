@@ -33,7 +33,6 @@ https://sites.google.com/pjwstk.edu.pl/t0meck-sop/3-bash-if-y-p%C4%99tle-tablice
 
 Na dzisiejszych zajęciach nauczyłem się:
 
-
 - Odświeżyłem informacje na temat wyrażeń warunkowych
 - Jak używać wyrażeń arytmetycznych
 - O istnieniu ${%}, ${%%}, ${#} i ${##}
@@ -42,3 +41,15 @@ Na dzisiejszych zajęciach nauczyłem się:
 - Jak korzystać z tablic w bashu
 - Jak napisać funkcję z argumentami i zwracanymi wartościami
 - Jak działa `return` w funkcjach
+
+
+# 2023-04-22
+
+https://sites.google.com/pjwstk.edu.pl/t0meck-sop/4-cc-wst%C4%99p
+
+Na dzisiejszych zajęciach nauczyłem się:
+
+- Jak pisać podstawowe Makefile
+- Przypomniałem sobie, że czytając bajty z pliku trzeba używać unsigned char
+- O tym, jak upierdliwy jest styl ANSI C
+- Jak używać `argc` i `argv`
