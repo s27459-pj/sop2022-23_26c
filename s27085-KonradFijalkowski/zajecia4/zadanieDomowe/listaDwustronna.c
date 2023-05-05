@@ -75,7 +75,6 @@ int main(){
     insertAfterNode(head->next, 3);
 
     pushHead(&(head->next), -4);
-    printf("jajco");
     printList(&head);
     freeList(head);
     return 0;
