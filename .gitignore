@@ -6,6 +6,9 @@
 
 #ignore binary files
 *.exe
+*.bin
+*.dat
 
 #ignore text sample files
 *.txt
+

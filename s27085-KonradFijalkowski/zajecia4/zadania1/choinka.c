@@ -4,12 +4,7 @@
 #include <stdbool.h>
 
 void isInRadius(int parameter, int point, int radius){
-    if(abs(parameter-point) <= radius) {
-        printf("x");
-    }
-    else {
-        printf(" ");
-    }
+    printf((abs(parameter-point) <= radius) ? "x" : " ");
 }
 
 int main(int argc, char** argv){
@@ -24,11 +19,11 @@ int main(int argc, char** argv){
         }
         printf("\n");
     }
-    int rozmiarPieńka = wysokoscChoinki/3;
-    if (rozmiarPieńka == 0) {
-        rozmiarPieńka = 1;
+    int rozmiarPienka = wysokoscChoinki/3;
+    if (rozmiarPienka == 0) {
+        rozmiarPienka = 1;
     }
-    for (int wiersz = 0; wiersz < rozmiarPieńka; wiersz++) {
+    for (int wiersz = 0; wiersz < rozmiarPienka; wiersz++) {
         for (int poleNaZnak = 1; poleNaZnak <= dlugoscWiersza; ++poleNaZnak) {
             isInRadius(poleNaZnak, wysokoscChoinki, wysokoscChoinki > 3);
         }

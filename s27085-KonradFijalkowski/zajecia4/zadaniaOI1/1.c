@@ -1,63 +1,64 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-#define BUFFER_SIZE 1024
 
 bool isSourceFileGiven(int numberOfParameters){
     return numberOfParameters == 2 ? true : false;
 }
 
-void readInReverseFromFile(FILE *fileToRead, int fileByteSize){
-    int readCharNumber = 0;
-    char readChar;
-
-    while(readCharNumber<=fileByteSize){
-        readCharNumber++;
-        fseek(fileToRead, -readCharNumber, SEEK_END);
-        readChar = fgetc(fileToRead);
-        if(readChar == '\n') {
-            readCharNumber++;
-        }
-            printf("%c", readChar);
-        //https://stackoverflow.com/questions/21844064/size-of-string-literal-consisting-of-escaped-characters
+void printDigitsInReverse(int number){
+    if(number<0){
+        number = abs(number);
+        do{
+            printf("%d", number%10);
+            number = number/10;
+        }while(number%10 != 0);
+        printf("-");
     }
-}
+    else {
+        do {
+            printf("%d", number % 10);
+            number = number / 10;
+        } while (number % 10 != 0);
+    }
+};
 
 int main(int argc, char** argv){
     FILE *fileToRead;
-    int fileByteSize;
+    int numberCount;
+    int *numbers;
+    int i;
 
     if(isSourceFileGiven(argc)) {
-        fileToRead = fopen( argv[1], "r");
+        fileToRead = fopen(argv[1], "r");
         if(fileToRead == NULL) {
             return 0;
         }
-        fseek(fileToRead, 0, SEEK_END);
-        fileByteSize = ftell(fileToRead);
+        fscanf(fileToRead, "%d", &numberCount);
+        numbers = malloc(sizeof (int)*numberCount);
 
-        readInReverseFromFile(fileToRead, fileByteSize);
-    }
-    else{
-        if(feof(stdin)){
-            printf("Stdin contains eof\n");
+        i = 0;
+        while(i<numberCount){
+            fscanf(fileToRead, "%d", &numbers[i]);
+            i++;
         }
-        int read;
-        void *bufferContent = malloc(BUFFER_SIZE);
-
-        fileToRead = fopen( "tempBuffer.txt", "w+");
-
-        while(read = fread(bufferContent, 1, BUFFER_SIZE, stdin)){
-            fwrite(bufferContent, 1, read, fileToRead);
-        }
-
-        fileByteSize = ftell(fileToRead);
-        readInReverseFromFile(fileToRead, fileByteSize);
-
-        remove("tempBuffer.txt");
-        free(bufferContent);
     }
+    else {
+        fscanf(stdin, "%d", &numberCount);
+        numbers = malloc(sizeof (int)*numberCount);
+        i = 0;
+        while(i<numberCount){
+            fscanf(stdin, "%d", &numbers[i]);
+            i++;
+        }
+    }
+    for (i = numberCount-1; i >= 0; i--){
+        printDigitsInReverse(numbers[i]);
+        if(i != 0){
+            printf("\n");
+        }
+    }
+    free(numbers);
     fclose(fileToRead);
     return 0;
 }
