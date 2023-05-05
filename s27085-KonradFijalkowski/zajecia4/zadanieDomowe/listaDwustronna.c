@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <malloc.h>
 
+/*dodanie wskaźnika do poprzedniego elementu*/
 typedef struct Node{
     int data;
     struct Node* next;
@@ -72,9 +73,9 @@ int main(){
         pushHead(&head, nodeValues[i]);
     }
     printList(&head);
-    insertAfterNode(head->next, 3);
+    insertAfterNode(head->next, 20);
 
-    pushHead(&(head->next), -4);
+    pushHead(&(head), -4);
     printList(&head);
     freeList(head);
     return 0;

@@ -15,6 +15,7 @@ int main(int argc, char ** argv){
     unsigned int functionId = atoi(argv[1]);
     unsigned int elementCount = atoi(argv[2]);
     int v = atoi (argv[3]);
+    /*iteruje się za każdym razem używają wskazanej funkcji na zmiennej v i kolejnym argumencie programu*/
     for(int i = 0; i < elementCount-1; i++) {
         v = funcPointers[functionId](v, atoi(argv[4+i]));
     }
