@@ -51,5 +51,7 @@ int main(int argc, char const* argv[]) {
     /* Korzystam z funkcji forAll - przekazuję wskaźnik na odczytane liczby */
     printf("%d\n", forAll(items, element_count, functions[function_id]));
 
+    free(items);
+
     return 0;
 }

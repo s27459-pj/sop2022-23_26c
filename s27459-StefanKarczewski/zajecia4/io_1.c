@@ -35,6 +35,7 @@ int main(int argc, char const *argv[]) {
         printf("%d\n", items[i]);
     }
 
+    free(file);
     fclose(file);
 
     return 0;
