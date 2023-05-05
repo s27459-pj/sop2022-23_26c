@@ -29,5 +29,9 @@ Na dzisiejszych zajeciach nauczyłem się:
 
 22.04.2023
 Na dzisiejszych zajęciach nauczyłem się:
-- odczytywania argumentów wywoałania programu,
+- odczytywania argumentów programu,
 - o kompilacji programó napisanych w języku C,
+- o wskaźnikach do zmiennych i funkcji,
+- o wczytywaniu danych z stdin,
+- o listach wiązanych,
+- o wczytywaniu plików (w tym z stdin).
