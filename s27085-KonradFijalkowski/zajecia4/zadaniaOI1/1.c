@@ -37,10 +37,13 @@ int main(int argc, char** argv){
         if(fileToRead == NULL) {
             return 0;
         }
-        /*pobieram pierwszą linie z liczbą podawanych integerów*/
+        /*pobieram pierwszą linię z liczbą podawanych integerów*/
         fscanf(fileToRead, "%d", &numberCount);
         numbers = malloc(sizeof (int)*numberCount);
-
+        if(numbers == NULL){
+            perror("Malloc error: ");
+            return -1;
+        }
         i = 0;
         /*przypisuje kolejne liczby do tablicy*/
         while(i<numberCount){
@@ -48,7 +51,7 @@ int main(int argc, char** argv){
             i++;
         }
     }
-    /*w przeciwnym razie pobieramy plik bezpośrednio z standardowego inputu*/
+    /*w przeciwnym razie pobieramy plik bezpośrednio ze standardowego inputu*/
     else {
         fscanf(stdin, "%d", &numberCount);
         numbers = malloc(sizeof (int)*numberCount);
