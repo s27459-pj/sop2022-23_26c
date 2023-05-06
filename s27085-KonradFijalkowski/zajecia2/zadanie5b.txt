@@ -13,8 +13,7 @@ echo "Pierwszy znak: $pierwszyZnak"
 
 #2
 ostatniZnak=${pierwszyArgument: -1}
-echo "Ostatni znak: $ostatniZnak"	#po namyśle stwierdzam, że można to było zrobić w jednej linii, ale tak przynajmniej
- ćwiczę referencje do zmiennych
+echo "Ostatni znak: $ostatniZnak"	#po namyśle stwierdzam, że można to było zrobić w jednej linii, ale tak przynajmniej ćwiczę referencje do zmiennych
 
 #3
 zmianaTekstu=$(echo $1 | sed s/SOP/\\\\e[32mSOP\\\\e[0m/g) #całe wyrażenie jest tzw. escape sequence,

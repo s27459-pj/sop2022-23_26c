@@ -19,6 +19,10 @@ void printList(Node* currentNode){
 void appendNode(Node ** head, int newData){
     Node* newNode = malloc(sizeof(Node));
     Node* lastNode = *head;
+    if(newNode == NULL){
+        perror("Malloc error: ");
+        return;
+    }
 
     newNode->data=newData;
     newNode->next=NULL;

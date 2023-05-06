@@ -52,6 +52,10 @@ int main(int argc, char** argv){
     else {
         fscanf(stdin, "%d", &numberCount);
         numbers = malloc(sizeof (int)*numberCount);
+        if(numbers == NULL){
+            perror("Malloc error: ");
+            return -1;
+        }
         i = 0;
         while(i<numberCount){
             fscanf(stdin, "%d", &numbers[i]);

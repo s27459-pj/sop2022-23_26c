@@ -20,8 +20,7 @@ ostatniaLitera=${ostatniaLitera: -1}
 
 if [[ "$ostatniaLitera" == "a" ]]
 then
-	echo "$1 ma kota, a kot ma ${1:: -1}ę." # imiona żeńskie kończą się na literę 'a', więc zamiast ostatniej litery
-	będę podmieniał literę 'ę'
+	echo "$1 ma kota, a kot ma ${1:: -1}ę." # imiona żeńskie kończą się na literę 'a', więc zamiast ostatniej litery będę podmieniał literę 'ę'
 else
 	echo "$1 ma kota, a kot ma ${1}a." # wszystkie inne przypadki będą kończyć się literą a
 fi

@@ -6,17 +6,18 @@ int sum(int a, int b);
 typedef int (*operation)(int,int);
 
 int main(int argc, char ** argv){
-    if(argc < 4 || argc != atoi(argv[2])+3){
-        printf("Invalid number of parameters given");
-        exit(EXIT_FAILURE);
-    }
-
     operation funcPointers[] = {min, max, sum};
     unsigned int functionId = atoi(argv[1]);
     unsigned int elementCount = atoi(argv[2]);
     int v = atoi (argv[3]);
+    int i;
+
+    if(argc < 4 || argc != atoi(argv[2])+3){
+        printf("Invalid number of parameters given");
+        exit(EXIT_FAILURE);
+    }
     /*iteruje się za każdym razem używają wskazanej funkcji na zmiennej v i kolejnym argumencie programu*/
-    for(int i = 0; i < elementCount-1; i++) {
+    for(i = 0; i < elementCount-1; i++) {
         v = funcPointers[functionId](v, atoi(argv[4+i]));
     }
     printf("V equals %d\n", v);

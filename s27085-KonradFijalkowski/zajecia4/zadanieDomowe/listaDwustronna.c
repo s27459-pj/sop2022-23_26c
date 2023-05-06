@@ -36,6 +36,10 @@ void pushHead(Node** head, int newData){
         return;
     }
     newNode = malloc(sizeof (Node));
+    if(newNode == NULL){
+        perror("Malloc error: ");
+        return;
+    }
     newNode->data = newData;
     newNode->next = *head;
     newNode->prev = NULL;
@@ -46,6 +50,10 @@ void pushHead(Node** head, int newData){
 }
 void insertAfterNode(Node * chosenNode, int newData){
     Node* newNode = malloc(sizeof (Node));
+    if(newNode == NULL){
+        perror("Malloc error: ");
+        return;
+    }
     newNode->data = newData;
     newNode->next = chosenNode->next;
     newNode->prev = chosenNode;

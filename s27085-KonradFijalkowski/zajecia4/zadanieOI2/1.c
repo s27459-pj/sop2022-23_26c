@@ -11,9 +11,13 @@ int displayRow(FILE *file, int64_t rowAddress){
     unsigned char *line = malloc(16*sizeof (unsigned char));
     int charsRead;
     int i;
-
-    /*zmienna z wartością unicode dla znaku kropek*/
     wchar_t unicodeDots = 0x2592;
+
+    if(line == NULL){
+        perror("Malloc error: ");
+        return -1;
+    }
+    /*zmienna z wartością unicode dla znaku kropek*/
 
     /*sprawdzam ile znaków zostaje wczytanych*/
     charsRead = fread(line, 1, 16, file);
@@ -23,7 +27,7 @@ int displayRow(FILE *file, int64_t rowAddress){
         return -1;
     }
 
-    /*wyswietlenie adresu wiersza z poprzedzającymi zerami*/
+    /*wyświetlenie adresu wiersza z poprzedzającymi zerami*/
     printf("%06llX: ", rowAddress);
 
     /*wyświetlenie kolejnych bitów linii*/
@@ -45,6 +49,7 @@ int displayRow(FILE *file, int64_t rowAddress){
             _setmode(_fileno(stdout), _O_TEXT); /*powrót do standardowego odczytu tekstu*/
         }
     }
+    free(line);
     printf("\n");
     return charsRead;
 }
@@ -52,7 +57,7 @@ int displayRow(FILE *file, int64_t rowAddress){
 
 int main(int argc, char** argv){
     FILE *file;
-    int64_t rowAddress = 0; /*int64 to jest 6 miejsc na liczbę w sys. heksadecymalnym*/
+    int64_t rowAddress = 0; /*int64 to jest 6 miejsc na liczbę w systemie heksadecymalnym*/
 
     /*jeżeli nie podano dwóch argumentów oznaccza to, że nie mamy nazwy pliku do otworzenia*/
     if(argc < 2){
@@ -61,10 +66,10 @@ int main(int argc, char** argv){
     }
     file = fopen(argv[1], "r");
 
-    /*sprawdzam czy plik został poprawnie otwarty*/
+    /*sprawdzam, czy plik został poprawnie otwarty*/
     if(file == NULL) {
-        printf("Unable to open text file");
-        exit(EXIT_FAILURE);
+        perror("Unable to open text file");
+        return -1;
     }
     /*rozpoczynam wyświetlanie pliku wiersz po wierszu z tytułem i stopką*/
     printf("Loading file: %s\n", argv[1]);
