@@ -11,6 +11,6 @@ elif [[ "$arg" =~ (?!00-000)^[0-9][0-9]-[0-9][0-9][0-9]$ ]]; then
   echo "kod pocztowy"
 elif [[ "$arg" =~ ^[A-PR-UWZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+$ ]]; then
   echo "imię"
-elif [[ "$arg" =~ [a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,} ]]; then
+elif [[ "$arg" =~ [a-zA-Z_+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,} ]]; then
   echo "email"
 fi
