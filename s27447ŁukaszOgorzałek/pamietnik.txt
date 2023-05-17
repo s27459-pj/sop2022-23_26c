@@ -42,3 +42,16 @@ UWAGA: nie pamiętam czy wcześniejsze wersje tego pamiętnika były skonwertowa
 UNIX, ale idąc za radą od teraz wszystkie pliki .txt (włącznie z tym pamiętnikiem) 
 z zadaniami z zajęć będą wrzucane na Gita w tym formacie. 
 
+2023-04-15
+
+Na dzisiejszych zajęciach nauczyłem się:
+- jak wygląda programowanie w C;
+- dlaczego powinniśmy pisać w ANSI C;
+- w jaki sposób ręcznie kompilować kod;
+- jak napisać prosty program wykorzystujący podstawowe funkcje;
+
+Powinienem:
+- dokończyć teorię z lekcji w domu (struktury, IO, wskaźniki itd.);
+- wykonać zadania domowe;
+- zaprzyjaźnić się z manualem do Basha; 
+
