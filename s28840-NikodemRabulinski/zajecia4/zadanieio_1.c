@@ -55,6 +55,10 @@ int main(int argc, const char *argv[]) {
   amt = getnum(f);
   /* I alokujemy bufor o wymaganym rozmiarze */
   buf = calloc(amt, sizeof(int));
+  if (!buf) {
+    fprintf(stderr, "Błąd alokacji\n");
+    return 1;
+  }
 
   for (i = 0; i < amt; i += 1)
     buf[i] = getnum(f);

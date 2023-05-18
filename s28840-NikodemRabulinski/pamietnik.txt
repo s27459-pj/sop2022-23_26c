@@ -18,3 +18,7 @@ Poznałem także funkcje, jak one się zachowują i jak mogą zwracać wynik do 
 Mój kochany pamiętniczku na dzisiejszych zajęciach nauczyłem się:
 Podstawowych struktur C, korzystania z różnych strumieni wejścia/wyjścia,
 oraz korzystania z systemów budowania (w tym wypadku meson i make).
+
+2023-05-06
+Mój kochany pamiętniczku na dzisiejszych zajęciach nauczyłem się:
+Tworzenia nowych procesów w C, wchodzenia z nimi w interakcje, wymieniania danych między nimi.
