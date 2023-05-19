@@ -36,3 +36,12 @@ Moj kochany pamietniczku na dzisiejszych zajeciach nauczyłam sie:
 Duuuuużo o wskaźnikach, musiałam przypomnieć sobie sporo informacji z zeszłego semestru ale nauczyłam się też sporo nowych rzeczy,
 na co dzień programuję raczej na "wyższych" poziomach więc wykorzystywanie wskaźników jest dla mnie zupełnie nowe, ale jest to bardzo
 rozwijające i mam wrażenie, że pomaga mi trochę inaczej spojrzeć na programowanie.
+
+----------------------------------------------------------
+
+2023-05-06
+Moj kochany pamietniczku na dzisiejszych zajeciach nauczyłam sie:
+Sporo o procesach. Była to dla mnie pierwsza podczas tych zajęć kompletnie nowa i nieznana rzecz, więc było dużo do nauki.
+Było sporo googlowania i zastanawiania się co i dlaczego nie działa, w szczególności przy zadaniu z chat-em, 
+jednak myślę, że udało mi się w miarę opanować temat (oczywiście tylko na podstawowym poziomie i na pewno sporo minie zanim w pełni
+osiądą te wszystkie nowe informacje :)).
