@@ -55,3 +55,13 @@ Powinienem:
 - wykonać zadania domowe;
 - zaprzyjaźnić się z manualem do Basha; 
 
+2023-04-15
+
+Na dzisiejszych zajęciach nauczyłem się:
+- co to jest fork(), jak działa i w jaki sposób stosować tę funkcję;
+- czym jest PID, PPID;
+- innych funkcji związanych z obsługą procesów;
+
+Powinienem:
+- dokończyć teorię z lekcji w domu (struktury, IO, wskaźniki itd.);
+- wykonać zadania domowe;
