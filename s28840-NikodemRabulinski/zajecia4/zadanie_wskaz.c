@@ -36,6 +36,10 @@ int main() {
     abort();
 
   arr = calloc(elementCount, sizeof(int));
+  if (!arr) {
+    fprintf(stderr, "Błąd alokacji\n");
+    return 1;
+  }
   for (i = 0; i < elementCount; i += 1)
     if (scanf("%d", &arr[i]) != 1)
       abort();
