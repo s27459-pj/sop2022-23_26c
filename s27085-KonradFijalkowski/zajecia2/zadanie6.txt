@@ -8,15 +8,14 @@ pierwszyArgument=$1
 ostatniaLitera=${pierwszyArgument: -1}
 ostatnieDwieLitery=${pierwszyArgument: -2}
 
-if [[ $ostatnieDwieLitery == 'ek' ]]	#w tym wypadku, dla nieregularnych imion takich jak "Marek", musimy sprawdzić czy imie kończy się na 'ek'; jeżeli tak, to koniec podmieniamy na "ka"
+if [[ $ostatnieDwieLitery == 'ek' ]]	#w tym wypadku, dla nieregularnych imion takich jak "Marek", musimy sprawdzić, czy imię kończy się na 'ek'; jeżeli tak, to koniec podmieniamy na "ka"
 then
 	echo "$1 ma kota, a kot ma ${1:: -2}ka."
 else
 	if [[ "$ostatniaLitera" == "a" ]]
 	then
-        	echo "$1 ma kota, a kot ma ${1:: -1}ę." # imiona żeńskie kończą się na litere 'a', wię>
+        	echo "$1 ma kota, a kot ma ${1:: -1}ę." # imiona żeńskie kończą się na literę 'a', więc końcówki trzeba zmienić na literę 'ę'
 	else
         	echo "$1 ma kota, a kot ma ${1}a." # wszystkie inne przypadki będą kończyć się literą a
 	fi
 fi
-
