@@ -14,3 +14,14 @@ Moj kochany pamietniczku na dzisiejszych zajeciach nauczylem sie:
 Korzystac z if'ów/pętli/talic oraz funkcji w bashu
 Tego w jaki sposób można przeskakiwać poprzez pętle w bashu
 Przypomniałem sobie również troche regexa
+
+2023-04-22
+Moj kochany pamietniczku na dzisiejszych zajeciach nauczylem sie:
+Wstepu do pieknego jezyka jakim jest ansi c
+Jak korzystac ze zmiennych oraz struktur w c
+W jaki sposob wczytywac pliki i jak je obslugiwac
+
+2023-05-06
+Moj kochany pamietniczku na dzisiejszych zajeciach nauczylem sie:
+Tego w jaki sposob obsluguje sie procesy w c
+Oblslugi pobierania id procesu jak i id procesu z ktorego zostal stworzony
