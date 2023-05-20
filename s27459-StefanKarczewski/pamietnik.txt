@@ -53,3 +53,14 @@ Na dzisiejszych zajęciach nauczyłem się:
 - Przypomniałem sobie, że czytając bajty z pliku trzeba używać unsigned char
 - O tym, jak upierdliwy jest styl ANSI C
 - Jak używać `argc` i `argv`
+
+
+# 2023-05-06
+
+https://sites.google.com/pjwstk.edu.pl/t0meck-sop/5-cc-procesy
+
+Na dzisiejszych zajęciach nauczyłem się:
+
+- Jak używać funkcji do pobierania pid/ppid
+- Jak tworzyć nowy proces dziecka za pomocą `fork()`
+- Jak czekać na zakończenie procesu za pomocą `wait()` lub `waitpid()`
