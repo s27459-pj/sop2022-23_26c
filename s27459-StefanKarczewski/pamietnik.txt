@@ -64,3 +64,4 @@ Na dzisiejszych zajęciach nauczyłem się:
 - Jak używać funkcji do pobierania pid/ppid
 - Jak tworzyć nowy proces dziecka za pomocą `fork()`
 - Jak czekać na zakończenie procesu za pomocą `wait()` lub `waitpid()`
+- Jak wizualizować struktury procesów i poprawnie używać `fork()`
