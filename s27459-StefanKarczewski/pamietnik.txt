@@ -65,3 +65,19 @@ Na dzisiejszych zajęciach nauczyłem się:
 - Jak tworzyć nowy proces dziecka za pomocą `fork()`
 - Jak czekać na zakończenie procesu za pomocą `wait()` lub `waitpid()`
 - Jak wizualizować struktury procesów i poprawnie używać `fork()`
+
+
+# 2023-05-20
+
+https://sites.google.com/pjwstk.edu.pl/t0meck-sop/6-cc-sygna%C5%82y-sockety
+
+Na dzisiejszych zajęciach nauczyłem się:
+
+- Jak obsługiwać sygnały za pomocą `signal()`
+- Jak używać `open()` z różnymi flagami
+- Jak otworzyć socket za pomocą `socket()`
+- Jak używać `bind()` i `listen()` do nasłuchiwania na sockecie jako serwer
+- Jak używać `accept()` do akceptowania połączeń na sockecie jako serwer
+- Jak używać `connect()` do łączenia się z socketem jako klient
+- Jak używać `send()` oraz `recv()` do komunikacji przez sockety
+- Jak użyć `shutdown()` do zamknięcia socketa
