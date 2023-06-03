@@ -62,6 +62,14 @@ int handle_client_connection(
         printf("%s", buffer);
     }
 
+    fprintf(log_file, "[%s:%s] ", client_info.host, client_info.port);
+    /* Wypisuję tylko pierwszą linijkę requestu */
+    for (i = 0; i < sizeof(buffer); i++) {
+        fprintf(log_file, "%c", buffer[i]);
+        if (buffer[i] == '\n') break;
+    }
+    fflush(log_file);
+
     /* TODO: Wsparcie wirtualnych hostów */
     status = "HTTP/1.1 200 OK";
     document = "<h1>SOP</h1>\n<pre>Lorem ipsum dolor sit amet</pre>";
