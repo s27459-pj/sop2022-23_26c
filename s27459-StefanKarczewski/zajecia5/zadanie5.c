@@ -49,5 +49,6 @@ int main(int argc, char const* argv[]) {
         waitpid(child_pids[i], NULL, 0);
     }
 
+    free(child_pids);
     return 0;
 }
