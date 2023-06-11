@@ -43,39 +43,76 @@ typedef struct ClientInfo {
 
 bool is_crlf(char *buffer) { return buffer[0] == '\r' && buffer[1] == '\n'; }
 
-int read_http_request(int client_sock_fd, char *start_line) {
-    char buffer[BUFFER_SIZE] = { 0 };
+int parse_header(char *buffer, char **key, char **value) {
+    char *sep = ":\r";
+    *key = strtok(buffer, sep);
+    *value = strtok(NULL, sep);
+    if (*key == NULL || *value == NULL) {
+        return -1;
+    }
+    /* Pomijam spację w wartości */
+    (*value)++;
+    return 0;
+}
+
+int read_http_request(int client_sock_fd, char *start_line, char *host_header) {
+    char buffer[BUFFER_SIZE] = { 0 }, *header, *value;
     ssize_t bytes_read;
-    bool reading_request = true;
-    int i;
+    int i = 0, header_start;
 
-    while (reading_request) {
-        bytes_read = read(client_sock_fd, buffer, sizeof(buffer) - 1);
-        if (bytes_read == -1) {
-            perror("read");
-            return -1;
+    /* Zakładam, że całe zapytanie zmieści się w jednym buforze */
+    bytes_read = read(client_sock_fd, buffer, sizeof(buffer) - 1);
+    if (bytes_read == -1) {
+        perror("read");
+        return -1;
+    }
+
+    /* Pierwsza linia requestu:
+     * metoda adres protokół\r\n
+     * https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages#start_line */
+    for (; i < sizeof(buffer) - 1; i++) {
+        /* Szukam \r\n */
+        if ((i < (sizeof(buffer) - 1)) && is_crlf(&buffer[i])) {
+            strncpy(start_line, buffer, i);
+            /* Przesuwam wskaźnik o 2, aby ominąć \r\n */
+            i += 2;
+            break;
         }
-
-        /* Czytam pierwszą linię requestu:
-         * metoda adres protokół\r\n
-         * https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages#start_line
-         * Zakładam, że zmieści się ona w jednym buforze BUFFER_SIZE */
-        for (i = 0; i < sizeof(buffer) - 1; i++) {
-            /* Szukam \r\n */
-            if ((i < (sizeof(buffer) - 1)) && is_crlf(&buffer[i])) {
-                strncpy(start_line, buffer, i);
-                reading_request = false;
-                /* Przesuwam wskaźnik o 2, aby ominąć \r\n */
-                i += 2;
-                break;
-            }
+        if (i == sizeof(buffer) - 1) {
             /* Nie udało się znaleźć \r\n w tym buforze
-             * FIXME: Wspieraj start-line w więcej niż jednym buforze */
-            if (i == sizeof(buffer) - 1) {
-                return -1;
-            }
+             * FIXME: Wspieraj zapytania w więcej niż jednym buforze */
+            return -2;
         }
     }
+    printf("%s\n", start_line);
+
+    /* Nagłówki:
+     * klucz: wartość\r\n
+     * \r\n (pusta linia)
+     * https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages#headers */
+    header_start = i;
+    for (; i < bytes_read; i++) {
+        /* Szukam \r\n (koniec pojedyńczego nagłówka) */
+        if ((i < (sizeof(buffer) - 1)) && is_crlf(&buffer[i])) {
+            parse_header(&buffer[header_start], &header, &value);
+            printf("%s: %s\n", header, value);
+            i += 2;
+            header_start = i;
+
+            /* Szukam nagłówka Host */
+            if (strncmp(header, "Host", 4) == 0) {
+                strncpy(host_header, value, MAX_HOST_LENGTH - 1);
+            }
+        }
+
+        /* Szukam kolejnego \r\n od razu po końcu nagłówka (koniec sekcji nagłówków) */
+        if ((i < (sizeof(buffer) - 1)) && is_crlf(&buffer[i])) {
+            i += 2;
+            break;
+        }
+    }
+
+    /* Z resztą requestu nic nie robię */
 
     return 0;
 }
@@ -83,17 +120,27 @@ int read_http_request(int client_sock_fd, char *start_line) {
 int handle_client_connection(
     int client_sock_fd, ClientInfo client_info, FILE *log_file
 ) {
-    char buffer[BUFFER_SIZE], start_line[MAX_START_LINE_LENGTH] = { 0 };
+    char buffer[BUFFER_SIZE], start_line[MAX_START_LINE_LENGTH] = { 0 },
+                              host_header[MAX_HOST_LENGTH] = { 0 };
     ssize_t bytes_sent;
-    char *status, *document;
+    char status[] = "HTTP/1.1 200 OK",
+         document_format[] =
+             "<h1>SOP</h1>\n<pre>Lorem ipsum dolor sit amet</pre>\n<pre>Host: %s</pre>",
+         document[sizeof(document_format) + MAX_HOST_LENGTH] = { 0 };
 
-    if (read_http_request(client_sock_fd, start_line) < 0) return -1;
+    if (read_http_request(client_sock_fd, start_line, host_header) < 0) {
+        return -1;
+    }
 
     fprintf(log_file, "[%s:%s]\t%s\n", client_info.host, client_info.port, start_line);
     fflush(log_file);
 
-    status = "HTTP/1.1 200 OK";
-    document = "<h1>SOP</h1>\n<pre>Lorem ipsum dolor sit amet</pre>";
+    if (*host_header != '\0') {
+        sprintf(document, document_format, host_header);
+    } else {
+        sprintf(document, document_format, client_info.host);
+    }
+
     memset(buffer, 0, sizeof(buffer));
     sprintf(
         buffer,
