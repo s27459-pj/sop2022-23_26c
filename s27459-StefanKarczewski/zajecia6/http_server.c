@@ -31,6 +31,10 @@
  * abym mógł zamknąć go z handlera SIGINT */
 static int server_sock_fd;
 static bool server_active = true;
+/* Lista zabronionych adresów */
+static const char *BLOCKED_ADDRESSES[] = {
+    "10.0.0.1", "20.0.0.1", "8.8.8.8", "8.4.4.8", "1.1.1.1"
+};
 
 typedef struct ClientInfo {
     char host[NI_MAXHOST];
@@ -92,6 +96,16 @@ int handle_client_connection(
     return 0;
 }
 
+bool is_blocked_address(const char *address) {
+    int i;
+    for (i = 0; i < sizeof(BLOCKED_ADDRESSES) / sizeof(BLOCKED_ADDRESSES[0]); i++) {
+        if (strcmp(address, BLOCKED_ADDRESSES[i]) == 0) {
+            return true;
+        }
+    }
+    return false;
+}
+
 int wait_for_client(int sock_fd, FILE *log_file) {
     struct sockaddr_in client_addr;
     socklen_t client_addr_len;
@@ -114,10 +128,15 @@ int wait_for_client(int sock_fd, FILE *log_file) {
         sizeof(client_info.host),
         client_info.port,
         sizeof(client_info.port),
-        NI_NUMERICSERV
+        NI_NUMERICHOST | NI_NUMERICSERV
     );
 
-    /* TODO: Blacklista adresów */
+    if (is_blocked_address(client_info.host)) {
+        printf("Zablokowany adres: %s\n", client_info.host);
+        printf("[koniec połączenia]\n");
+        close(client_sock_fd);
+        return 0;
+    }
 
     printf("Nowy klient: %s:%s\n", client_info.host, client_info.port);
     if (fork() == 0) {
@@ -183,6 +202,8 @@ int main(int argc, const char *argv[]) {
     printf("Aby zakończyć działanie programu, naciśnij Ctrl+C\n");
     signal(SIGINT, handle_sigint);
     while (server_active) {
+        /* wait_for_client zwraca 1 w przypadku kiedy proces dziecka
+         * zakończył obsługiwanie klienta. */
         if (wait_for_client(server_sock_fd, log_file) == 1) {
             break;
         }
