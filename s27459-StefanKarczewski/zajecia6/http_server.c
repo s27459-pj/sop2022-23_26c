@@ -41,40 +41,57 @@ typedef struct ClientInfo {
     char port[NI_MAXSERV];
 } ClientInfo;
 
-int handle_client_connection(
-    int client_sock_fd, ClientInfo client_info, FILE *log_file
-) {
-    char buffer[BUFFER_SIZE];
-    ssize_t bytes_sent;
-    char *status, *document;
-    int i;
-    bool reading_request = true;
+bool is_crlf(char *buffer) { return buffer[0] == '\r' && buffer[1] == '\n'; }
 
-    /* Czytam całe zapytanie, na razie nic z nim nie zrobię */
+int read_http_request(int client_sock_fd, char *start_line) {
+    char buffer[BUFFER_SIZE] = { 0 };
+    ssize_t bytes_read;
+    bool reading_request = true;
+    int i;
+
     while (reading_request) {
-        if (read(client_sock_fd, buffer, sizeof(buffer) - 1) == -1) {
+        bytes_read = read(client_sock_fd, buffer, sizeof(buffer) - 1);
+        if (bytes_read == -1) {
             perror("read");
             return -1;
         }
+
+        /* Czytam pierwszą linię requestu:
+         * metoda adres protokół\r\n
+         * https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages#start_line
+         * Zakładam, że zmieści się ona w jednym buforze BUFFER_SIZE */
         for (i = 0; i < sizeof(buffer) - 1; i++) {
-            if ((i < (sizeof(buffer) - 1)) && buffer[i] == '\r' &&
-                buffer[i + 1] == '\n') {
+            /* Szukam \r\n */
+            if ((i < (sizeof(buffer) - 1)) && is_crlf(&buffer[i])) {
+                strncpy(start_line, buffer, i);
                 reading_request = false;
+                /* Przesuwam wskaźnik o 2, aby ominąć \r\n */
+                i += 2;
                 break;
             }
+            /* Nie udało się znaleźć \r\n w tym buforze
+             * FIXME: Wspieraj start-line w więcej niż jednym buforze */
+            if (i == sizeof(buffer) - 1) {
+                return -1;
+            }
         }
-        printf("%s", buffer);
     }
 
-    fprintf(log_file, "[%s:%s] ", client_info.host, client_info.port);
-    /* Wypisuję tylko pierwszą linijkę requestu */
-    for (i = 0; i < sizeof(buffer); i++) {
-        fprintf(log_file, "%c", buffer[i]);
-        if (buffer[i] == '\n') break;
-    }
+    return 0;
+}
+
+int handle_client_connection(
+    int client_sock_fd, ClientInfo client_info, FILE *log_file
+) {
+    char buffer[BUFFER_SIZE], start_line[MAX_START_LINE_LENGTH] = { 0 };
+    ssize_t bytes_sent;
+    char *status, *document;
+
+    if (read_http_request(client_sock_fd, start_line) < 0) return -1;
+
+    fprintf(log_file, "[%s:%s]\t%s\n", client_info.host, client_info.port, start_line);
     fflush(log_file);
 
-    /* TODO: Wsparcie wirtualnych hostów */
     status = "HTTP/1.1 200 OK";
     document = "<h1>SOP</h1>\n<pre>Lorem ipsum dolor sit amet</pre>";
     memset(buffer, 0, sizeof(buffer));
